@@ -62,7 +62,41 @@ $route = Route::current()->getName();
           </ul>
         </li>
 
-        <li class="header nav-small-cap">User Interface</li>
+        <!-- se coloca para recuperar la pestaña activa y remarcarla con azul -->
+        <li class="treeview {{($prefix == '/setups')?'active':'' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span> Gestión general </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('citizen.class.view')}}"><i class="ti-more"></i> Clase de ciudadano </a></li>
+            <li><a href="{{route('citizen.year.view')}}"><i class="ti-more"></i> Año del ciudadano </a></li>
+            <li><a href="{{route('citizen.group.view')}}"><i class="ti-more"></i> Grupo del ciudadano </a></li>
+            <li><a href="{{route('citizen.shift.view')}}"><i class="ti-more"></i> Turno del ciudadano </a></li>
+            <li><a href="{{route('fee.category.view')}}"><i class="ti-more"></i> Categoria de la tarifa </a></li>
+            <li><a href="{{route('fee.amount.view')}}"><i class="ti-more"></i> Monto de la tarifa </a></li>
+            <li><a href="{{route('badge.type.view')}}"><i class="ti-more"></i> Tipo de divisa </a></li>
+            <li><a href="{{route('support.type.view')}}"><i class="ti-more"></i> Apoyos </a></li>
+            <li><a href="{{route('assign.support.view')}}"><i class="ti-more"></i> Asignar apoyo </a></li>
+            <li><a href="{{route('designation.view')}}"><i class="ti-more"></i> Designación </a></li>
+          </ul>
+        </li>
+
+        <li class="treeview {{($prefix == '/citizens')?'active':'' }}">
+            <a href="#">
+              <i data-feather="mail"></i> <span> Administrar ciudadanos </span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href=""><i class="ti-more"></i> Registrar usuario </a></li>
+            </ul>
+          </li>
+
+        <li class="header nav-small-cap"> Avanzado </li>
 
         <li class="treeview">
           <a href="#">

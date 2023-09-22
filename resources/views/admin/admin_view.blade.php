@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{asset('backend/images/favicon.ico')}}">
     <!-- Se añade el backend a las direcciones para tormarlas directamente de nuestras carpetas -->
-    <title> Administración Ayudantia Loma Bonita - Panel principal </title>
+    <title> Administración Ayudantia Loma Bonita</title>
 
 	<!-- Estilo Vendor -->
 	<link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
@@ -63,10 +63,10 @@
         e.preventDefault();
           var link = $(this).attr("href");
 
-          // Se usa el comando extraido de Sweetalert2 
+          // Se usa el comando extraido de Sweetalert2
               Swal.fire({
-                title: '¿Estas seguro de eliminar el usaurio?',
-                text: "No se podra recuperar el usuario posteriormente",
+                title: '¿Estas seguro de eliminar el registro?',
+                text: "No se podra recuperar el registro posteriormente",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -78,7 +78,7 @@
                   window.location.href = link
                   Swal.fire(
                     'Eliminado',
-                    'El usuario ha sido eliminado',
+                    'El registro ha sido eliminado',
                     'success'
                   )
                 }
@@ -108,9 +108,9 @@
 
             case 'error':
             toastr.error(" {{ Session::get('message') }} ");
-            break; 
+            break;
           }
-      @endif 
+      @endif
   </script>
 </body>
 </html>

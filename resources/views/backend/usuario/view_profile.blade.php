@@ -21,7 +21,7 @@
 					</div>
 					<div class="widget-user-image">
                         <!--En caso de que el usuario no tenga foto, se usara la foto por defecto de Sin Imagen-->
-					  <img class="rounded-circle" 
+					  <img class="rounded-circle"
                       src="{{(!empty($user->image))? url('upload/user_images/'.$user->image):url('upload/sin_imagen.jpg') }}" alt="Imagen de perfil">
 					</div>
 					<div class="box-footer">
@@ -40,7 +40,7 @@
 						</div>
 						<div class="col-sm-4">
 						  <div class="description-block">
-							<h5 class="description-header">Genero</h5>
+							<h5 class="description-header">Género</h5>
 							<span class="description-text">{{$user->gender}}</span>
 						  </div>
 						</div>
@@ -51,7 +51,7 @@
             </div>
 		  </div>
 		</section>
-	  
+
 	  </div>
   </div>
 
