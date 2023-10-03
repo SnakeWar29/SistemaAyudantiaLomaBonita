@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Setup\TipoDivisaControlador;
 use App\Http\Controllers\Backend\Setup\CiudadanoApoyoControlador;
 use App\Http\Controllers\Backend\Setup\AsignarApoyoControlador;
 use App\Http\Controllers\Backend\Setup\DesignacionControlador;
+use App\Http\Controllers\Backend\Citizen\CiudadanoRegistroControlador;
 
 /*
 |--------------------------------------------------------------------------
@@ -217,6 +218,29 @@ Route::prefix('setups')->group(function(){
      Route::get('assign/support/details/{class_id}',[DesignacionControlador::class,'DesignationDelete'])->name('designation.delete');
 
 
+
+});
+
+// -----------  Rutas para  la administracion de ciudadano  ------------
+Route::prefix('citizens')->group(function(){
+    // Ruta para mostrar la información del perfil actual
+    Route::get('/reg/view',[CiudadanoRegistroControlador::class,'CitizenRegView'])->name('citizen.registration.view');
+    // Ruta para redirigir a la vista de añadir ciudadano
+    Route::get('/reg/add',[CiudadanoRegistroControlador::class,'CitizenRegAdd'])->name('citizen.registration.add');
+    // Ruta para añadir al ciudadano al presionar el boton
+    Route::post('/reg/store',[CiudadanoRegistroControlador::class,'CitizenRegStore'])->name('store.citizen.registration');
+    // Ruta para redirigir a los resultados de la busqueda
+    Route::get('/year/class/wise',[CiudadanoRegistroControlador::class,'CitizenClassYearWise'])->name('citizen.year.class.wise');
+    // Ruta para redirigir a la vista de edicion del ciudadano
+    Route::get('/reg/edit/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegEdit'])->name('citizen.registration.edit');
+    // Ruta para editar al ciudadano al presionar el boton
+    Route::post('/reg/update/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegUpdate'])->name('update.citizen.registration');
+    // Ruta para promover al ciudadano
+    Route::get('/reg/promotion/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegPromotion'])->name('citizen.registration.promotion');
+    // Ruta para promocionar al ciudadano al presionar el boton
+    Route::post('/reg/update/promotion/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenUpdatePromotion'])->name('promotion.citizen.registration');
+    // Ruta para generar el pdf del ciudadano individual
+    Route::get('/reg/details/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegDetails'])->name('citizen.registration.details');
 
 });
 

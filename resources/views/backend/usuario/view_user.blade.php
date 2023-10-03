@@ -14,7 +14,7 @@
 			 <div class="box">
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Lista de usuarios </h3>
-                  <!-- Boton que permitira añadir un nuevo usuario desde la misma vista --> 
+                  <!-- Boton que permitira añadir un nuevo usuario desde la misma vista -->
                     <a href="{{route('users.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir usuario </a>
 				</div>
 				<div class="box-body">
@@ -26,6 +26,7 @@
 								<th>Rol</th>
 								<th>Nombre</th>
 								<th>Correo Electrónico</th>
+                                <th> Código </th>
 								<th width="25%">Acción</th>
 							</tr>
 						</thead>
@@ -34,9 +35,10 @@
                             @foreach($allData as $key => $user)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td> {{$user->usertype}} </td>
+								<td> {{$user->role}} </td>
 								<td>{{$user->name}}</td>
 								<td>{{$user->email}}</td>
+                                <td>{{$user->code}}</td>
 								<td>
                                     <!-- Aqui van los botones para las diferentes acciones sobre cada usuario -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
@@ -50,11 +52,11 @@
 					  </table>
 					</div>
 				</div>
-			  </div> 
+			  </div>
 			</div>
 		  </div>
 		</section>
-	  
+
 	  </div>
   </div>
 

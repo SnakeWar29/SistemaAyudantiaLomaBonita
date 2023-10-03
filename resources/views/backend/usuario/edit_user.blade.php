@@ -18,7 +18,7 @@
 		   <form method="POST" action="{{route('users.update',$editData->id)}}">
 		   @csrf
 			 <div class="row">
-			   <div class="col-12">	
+			   <div class="col-12">
 				<!-- -->
 
 				<div class="row"> <!-- Inicia la clase row-->
@@ -27,18 +27,18 @@
 						<div class="form-group">
 							<h5> Rol de usuario <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<select name="usertype" id="usertype" required="" class="form-control">
+								<select name="role" required="" class="form-control">
 									<option value="" selected="" disabled=""> Selecciona el rol </option>
-									<option value="Admin" {{($editData->usertype == "Admin" ? "selected":"")}}>Administrador</option>
-									<option value="Encargado" {{($editData->usertype == "Encargado" ? "selected":"")}}>Encargado</option>
-									<option value="Visualizador" {{($editData->usertype == "Visualizador" ? "selected":"")}}>Visualizador</option>
+									<option value="Admin" {{($editData->role == "Admin" ? "selected":"")}}>Administrador</option>
+									<option value="Encargado" {{($editData->role == "Encargado" ? "selected":"")}}>Encargado</option>
+									<option value="Visualizador" {{($editData->role == "Visualizador" ? "selected":"")}}>Visualizador</option>
                                     <!-- Las funciones son para poder llamar el tipo de usuario al que pertenece actualmente, si esta en blanco, mostrara el mensaje predeterminado-->
 								</select>
 							</div>
 						</div>
 					</div>
 						<!-- Formulario para editar el nombre de usuario -->
-					<div class="col-md-6">		
+					<div class="col-md-6">
 						<div class="form-group">
 					  	 <h5> Nombre completo <span class="text-danger">*</span></h5>
 					  	 <div class="controls">
@@ -50,7 +50,7 @@
 
 
 				<div class="row"> <!-- Inicia la clase row2-->
-				<div class="col-md-6">		
+				<div class="col-md-6">
 					<!-- Formulario para editar el correo electronico del usuario -->
 						<div class="form-group">
 					  	 <h5> Correo Electrónico <span class="text-danger">*</span></h5>
@@ -59,11 +59,11 @@
 				 	    </div>
 					</div>
 					<!-- Formulario para pedir la contraseña del usuario -->
-					<div class="col-md-6">		
-						
+					<div class="col-md-6">
+
 					</div>
 				</div> <!-- Termina row2 -->
-				
+
 				   <div class="text-xs-right">
 							<input type="submit" class="btn btn-rounded btn-info mb-5" value="Editar usuario">
 				   </div>
@@ -76,7 +76,7 @@
  </div>
 
 </section>
-	  
+
 	  </div>
   </div>
 

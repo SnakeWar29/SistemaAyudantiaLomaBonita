@@ -19,7 +19,7 @@
 		   <form method="POST" action="{{route('users.store')}}">
 		   @csrf
 			 <div class="row">
-			   <div class="col-12">	
+			   <div class="col-12">
 				<!-- -->
 
 				<div class="row"> <!-- Inicia la clase row-->
@@ -28,17 +28,17 @@
 						<div class="form-group">
 							<h5> Rol de usuario <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<select name="usertype" id="usertype" required="" class="form-control">
+								<select name="role" id="role" required="" class="form-control">
 									<option value="" selected="" disabled=""> Selecciona el rol </option>
 									<option value="Admin">Administrador</option>
 									<option value="Encargado">Encargado</option>
-									<option value="Visualizador">Visualizador</option>
+									<option value="Visualizador">Ciudadano</option>
 								</select>
 							</div>
 						</div>
 					</div>
 						<!-- Formulario para pedir el nombre de usuario -->
-					<div class="col-md-6">		
+					<div class="col-md-6">
 						<div class="form-group">
 					  	 <h5> Nombre completo <span class="text-danger">*</span></h5>
 					  	 <div class="controls">
@@ -49,7 +49,7 @@
 
 
 				<div class="row"> <!-- Inicia la clase row2-->
-				<div class="col-md-6">		
+				<div class="col-md-6">
 					<!-- Formulario para pedir el correo electronico del usuario -->
 						<div class="form-group">
 					  	 <h5> Correo Electrónico <span class="text-danger">*</span></h5>
@@ -57,16 +57,8 @@
 							   <input type="email" name="email" class="form-control" required=""> </div>
 				 	    </div>
 					</div>
-					<!-- Formulario para pedir la contraseña del usuario -->
-					<div class="col-md-6">		
-						<div class="form-group">
-					  	 <h5> Contraseña <span class="text-danger">*</span></h5>
-					  	 <div class="controls">
-							   <input type="password" name="password" class="form-control" required=""> </div>
-				 	    </div>
-					</div>
 				</div> <!-- Termina row2 -->
-				
+
 				   <div class="text-xs-right">
 							<input type="submit" class="btn btn-rounded btn-info mb-5" value="Añadir usuario">
 				   </div>
@@ -79,7 +71,7 @@
  </div>
 
 </section>
-	  
+
 	  </div>
   </div>
 

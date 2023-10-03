@@ -15,7 +15,7 @@ class UsuarioControlador extends Controller
     public function UserView(){
         // Con $allData traemos todos los datos de los usuarios de la base de datos
         // Con $data mandamos los datos obtenidos
-        $data['allData'] = User::all();
+        $data['allData'] = User::where('usertype','Admin')->get();
         return view('Backend.usuario.view_user',$data);
     }
 
@@ -36,12 +36,16 @@ class UsuarioControlador extends Controller
         ]);
 
         $data = new User();
+        // Asignamos que se genere de forma aletoria un codigo de 4 numeros entre 0 y 9
+        $code = rand(0000,9999);
         // Se introducen los datos asignados en el formulario a los comapos de la base de datos
-        $data->usertype = $request->usertype;
+        $data->usertype = 'Admin';
+        $data->role = $request->role;
         $data->name = $request->name;
         $data->email = $request->email;
         // Bcrypt es para poder encriptar la contraseña una vez introducida
-        $data->password = bcrypt($request->password);
+        $data->password = bcrypt($code);
+        $data->code = $code;
         $data->save();
 
 
@@ -68,9 +72,9 @@ class UsuarioControlador extends Controller
     public function UserUpdate(Request $request, $id){
         // Se encuentra el usuario especifico
         $data = User::find($id);
-        $data->usertype = $request->usertype;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->role = $request->role;
         $data->save();
 
 
@@ -84,7 +88,7 @@ class UsuarioControlador extends Controller
         return redirect()->route('user.view')->with($notification);
     }
 
-    // Función para eliminar un usuario 
+    // Función para eliminar un usuario
     // Entrada:  Datos del usuario logueado
     // Salida: Eliminación del usuario con coincidencias en la base de datos, al igual que la vista con notificación
     public function UserDelete($id){
@@ -96,7 +100,7 @@ class UsuarioControlador extends Controller
                     'message' => 'Usuario eliminado exitosamente',
                     'alert-type' => 'info'
                 );
-        
+
                 // Desplegamos la notificación de exito
                 return redirect()->route('user.view')->with($notification);
     }

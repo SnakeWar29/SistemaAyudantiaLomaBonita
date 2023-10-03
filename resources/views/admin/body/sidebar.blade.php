@@ -35,19 +35,23 @@ $route = Route::current()->getName();
           </a>
         </li>
 
-        <li class="treeview {{($prefix == '/users')?'active':'' }}">
-          <a href="#">
-            <i data-feather="message-circle"></i>
-            <span> Administrar usuarios </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{route('user.view')}}"><i class="ti-more"></i> Visualizar usuario</a></li>
-            <li><a href="{{route('users.add')}}"><i class="ti-more"></i> Añadir usuario </a></li>
-          </ul>
-        </li>
+
+        <!-- Se coloca la condicion para que este apartado solo pueda ser accedido por los usuarios con permisos correspondientes -->
+        @if(Auth::user()->role=='Admin')
+            <li class="treeview {{($prefix == '/users')?'active':'' }}">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span> Administrar usuarios </span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('user.view')}}"><i class="ti-more"></i> Visualizar usuario</a></li>
+                    <li><a href="{{route('users.add')}}"><i class="ti-more"></i> Añadir usuario </a></li>
+                </ul>
+            </li>
+        @endif
          <!-- Se pone la condicion que si es el mismo prefix, se mostrara como opción activa en el panel lateral -->
         <li class="treeview {{($prefix == '/profile')?'active':'' }}">
           <a href="#">
@@ -92,7 +96,7 @@ $route = Route::current()->getName();
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href=""><i class="ti-more"></i> Registrar usuario </a></li>
+              <li><a href="{{route('citizen.registration.view')}}"><i class="ti-more"></i> Registrar ciudadano </a></li>
             </ul>
           </li>
 
