@@ -247,7 +247,6 @@ class CiudadanoRegistroControlador extends Controller
         $data['details']= AssignCitizen::with(['citizen','discount'])->where('citizen_id',$citizen_id)->first();
         $pdf = PDF::loadView('backend.citizen.citizen_reg.citizen_details_pdf',$data);
         return $pdf->download('Reporte_Ciudadano.pdf');
-        
-    }
 
+    }
 }

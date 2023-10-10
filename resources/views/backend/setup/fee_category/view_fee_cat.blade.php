@@ -23,7 +23,7 @@
 						<thead>
 							<tr>
 								<th width="5%">ID</th>
-								<th>Año</th>
+								<th> Categoría </th>
 								<th width="25%">Acción</th>
 							</tr>
 						</thead>

@@ -36,7 +36,7 @@
 								<td>
                                     <!-- Aqui van los botones para las diferentes acciones -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('assign.support.edit',$designation->id)}}" class="btn btn-info"> Editar </a>
+                                    <a href="{{route('designation.edit',$designation->id)}}" class="btn btn-info"> Editar </a>
 									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('designation.delete',$designation->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
                                 </td>

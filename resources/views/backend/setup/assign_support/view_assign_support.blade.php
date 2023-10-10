@@ -37,7 +37,6 @@
                                     <!-- Aqui van los botones para las diferentes acciones sobre cada tarifa -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('assign.support.edit',$assign->class_id)}}" class="btn btn-info"> Administrar </a>
-									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('assign.support.details',$assign->class_id)}}" class="btn btn-primary"> Detalles </a>
                                 </td>
 							</tr>

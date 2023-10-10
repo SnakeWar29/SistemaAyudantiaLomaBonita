@@ -15,6 +15,11 @@ use App\Http\Controllers\Backend\Setup\CiudadanoApoyoControlador;
 use App\Http\Controllers\Backend\Setup\AsignarApoyoControlador;
 use App\Http\Controllers\Backend\Setup\DesignacionControlador;
 use App\Http\Controllers\Backend\Citizen\CiudadanoRegistroControlador;
+use App\Http\Controllers\Backend\Citizen\CiudadanoRolControlador;
+use App\Http\Controllers\Backend\Citizen\TarifaRegistroControlador;
+use App\Http\Controllers\Backend\Citizen\TarifaMensualControlador;
+use App\Http\Controllers\Backend\Citizen\TarifaApoyoControlador;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +36,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index'); // Regresa la vista index del admin cuando se loguea con exito
@@ -46,7 +48,10 @@ Route::get('/admin/logout',[AdminControlador::class,'Logout'])->name('admin.logo
 
 // -----------  Rutas para poder realizar la administración de los usuarios registrados en el sistema  ------------
 // Este grupo se encargara de almacenar todos las rutas relacionadas con la administracion de los usuarios
-Route::prefix('users')->group(function(){
+Route::group([
+    'prefix' => 'users',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
     // Ver usuario
     Route::get('/view',[UsuarioControlador::class,'UserView'])->name('user.view');
     // Añadir usuario desde el registro
@@ -62,7 +67,10 @@ Route::prefix('users')->group(function(){
 
 });
 // -----------  Rutas para el perfil del usuario  ------------
-Route::prefix('profile')->group(function(){
+Route::group([
+    'prefix' => 'profile',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
     // Ruta para mostrar la información del perfil actual
     Route::get('/view',[PerfilControlador::class,'ProfileView'])->name('profile.view');
     // Ruta para poder modificar el perfil del usuario desde Mi Perfil
@@ -77,7 +85,10 @@ Route::prefix('profile')->group(function(){
 });
 
 // -----------  Rutas para la Gestion general  ------------
-Route::prefix('setups')->group(function(){
+Route::group([
+    'prefix' => 'setups',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
     // Rutas para la clase para el ciudadano
 
     // Ruta para mostrar la información de clases de ciudadanos actuales
@@ -201,7 +212,7 @@ Route::prefix('setups')->group(function(){
     // Ruta para editar un monto, al pulsar el boton y entregar el form
     Route::post('assign/support/update/{class_id}',[AsignarApoyoControlador::class,'UpdateAssignSupport'])->name('update.assign.support');
      // Ruta para ver los detalles de un monto
-     Route::get('assign/support/details/{class_id}',[AsignarApoyoControlador::class,'AssignSupportDetails'])->name('assign.support.details');
+    Route::get('assign/support/details/{class_id}',[AsignarApoyoControlador::class,'AssignSupportDetails'])->name('assign.support.details');
 
 
      // Designacion
@@ -209,21 +220,23 @@ Route::prefix('setups')->group(function(){
     // Ruta para del form para añadir
     Route::get('designation/add',[DesignacionControlador::class,'AddDesignation'])->name('designation.add');
     // Ruta para añadir desde el form
-    Route::post('assign/support/store',[DesignacionControlador::class,'DesignationStore'])->name('store.designation');
+    Route::post('designation/store',[DesignacionControlador::class,'DesignationStore'])->name('store.designation');
     // Ruta para editar un monto, redirige a la vista de edicion
-    Route::get('assign/support/edit/{class_id}',[DesignacionControlador::class,'DesignationEdit'])->name('assign.support.edit');
+    Route::get('designation/edit/{id}',[DesignacionControlador::class,'DesignationEdit'])->name('designation.edit');
     // Ruta para editar un monto, al pulsar el boton y entregar el form
-    Route::post('assign/support/update/{class_id}',[DesignacionControlador::class,'DesignationSupport'])->name('update.designation');
+    Route::post('designation/update/{id}',[DesignacionControlador::class,'DesignationSupport'])->name('update.designation');
      // Ruta para ver los detalles de un monto
-     Route::get('assign/support/details/{class_id}',[DesignacionControlador::class,'DesignationDelete'])->name('designation.delete');
+     Route::get('designation/delete/{id}',[DesignacionControlador::class,'DesignationDelete'])->name('designation.delete');
 
 
 
 });
 
 // -----------  Rutas para  la administracion de ciudadano  ------------
-Route::prefix('citizens')->group(function(){
-    // Ruta para mostrar la información del perfil actual
+Route::group([
+    'prefix' => 'citizens',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
     Route::get('/reg/view',[CiudadanoRegistroControlador::class,'CitizenRegView'])->name('citizen.registration.view');
     // Ruta para redirigir a la vista de añadir ciudadano
     Route::get('/reg/add',[CiudadanoRegistroControlador::class,'CitizenRegAdd'])->name('citizen.registration.add');
@@ -241,6 +254,31 @@ Route::prefix('citizens')->group(function(){
     Route::post('/reg/update/promotion/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenUpdatePromotion'])->name('promotion.citizen.registration');
     // Ruta para generar el pdf del ciudadano individual
     Route::get('/reg/details/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegDetails'])->name('citizen.registration.details');
+
+
+    // Ruta para mostrar la vista de generación de rol
+    Route::get('/rol/generate/view',[CiudadanoRolControlador::class,'CitizenRolView'])->name('rol.generate.view');
+    // Ruta para recuperar los ciudadanos del form con JavaScript
+    Route::get('/reg/getcitizens',[CiudadanoRolControlador::class,'GetCitizens'])->name('citizen.registration.getcitizens');
+    // Ruta para asignar el rol en el form
+    Route::post('/reg/roll/store',[CiudadanoRolControlador::class,'CitizenRollStore'])->name('roll.generate.store');
+
+
+    // Rutas para mostrar la vita de la tarifa de registro
+    Route::get('/reg/fee/view',[TarifaRegistroControlador::class,'RegFeeView'])->name('registration.fee.view');
+    // Ruta para recuperar la tarifa de los ciudadanos
+    Route::get('/reg/fee/classwisedata',[TarifaRegistroControlador::class,'RegFeeClassData'])->name('citizen.registration.fee.classwise.get');
+    // ruta para el PDF de la tarifa de registro
+    Route::get('/reg/fee/payslip',[TarifaRegistroControlador::class,'RegFeePayslip'])->name('citizen.registration.fee.payslip');
+
+
+    // Rutas para mostrar la vita de la tarifa de registro
+    Route::get('/monthly/fee/view',[TarifaMensualControlador::class,'MonthlyFeeView'])->name('monthly.fee.view');
+    // Ruta para recuperar la tarifa de los ciudadanos
+    Route::get('/monthly/fee/classwisedata',[TarifaMensualControlador::class,'MonthlyFeeClassData'])->name('citizen.monthly.fee.classwise.get');
+    // ruta para el PDF de la tarifa de registro
+    Route::get('/monthly/fee/payslip',[TarifaMensualControlador::class,'MonthlyFeePayslip'])->name('citizen.monthly.fee.payslip');
+
 
 });
 

@@ -96,7 +96,10 @@ $route = Route::current()->getName();
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{route('citizen.registration.view')}}"><i class="ti-more"></i> Registrar ciudadano </a></li>
+              <li><a href="{{route('citizen.registration.view')}}"><i class="ti-more"></i> Ciudadanos </a></li>
+              <li><a href="{{route('rol.generate.view')}}"><i class="ti-more"></i> Generar rol </a></li>
+              <li><a href="{{route('registration.fee.view')}}"><i class="ti-more"></i> Tarifa de registro </a></li>
+              <li><a href="{{route('monthly.fee.view')}}"><i class="ti-more"></i> Tarifa mensual </a></li>
             </ul>
           </li>
 
@@ -120,9 +123,9 @@ $route = Route::current()->getName();
 
 	<div class="sidebar-footer">
 		<!-- Objeto -->
-		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Configuración" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+		<!-- <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Configuración" aria-describedby="tooltip92529"><i class="ti-settings"></i></a> -->
 		<!-- Objeto -->
-		<a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Soporte"><i class="ti-email"></i></a>
+		<!-- <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Soporte"><i class="ti-email"></i></a> -->
 		<!-- Objeto -->
 		<a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Cerrar sesión "><i class="ti-lock"></i></a>
 	</div>
