@@ -2,6 +2,7 @@
 @extends('admin.admin_view')
 @section('admin')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <!-- En esta vista sera donde se administraran los tipos de tarifas  -->
 
 <div class="content-wrapper">
@@ -13,9 +14,9 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title"> Designaciones </h3>
+				  <h3 class="box-title"> Ausencia </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
-                    <a href="{{route('designation.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir designación </a>
+                    <a href="{{route('employee.leave.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir ausencia </a>
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -24,21 +25,29 @@
 							<tr>
 								<th width="5%">ID</th>
 								<th> Nombre </th>
+                                <th> ID Identificativo </th>
+                                <th> Razón </th>
+                                <th> Inicio de la ausencia </th>
+                                <th> Fin de la ausencia </th>
 								<th width="25%">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
                             <!-- Declaramos la variable user que nos ayudara a traer los datos -->
-                            @foreach($allData as $key => $designation)
+                            @foreach($allData as $key => $leave)
 							<tr>
 								<td>{{$key+1}}</td>  <!-- Boton editar y eliminar pendientes -->
-								<td>{{$designation->name}}</td>
+								<td>{{$leave['user']['name']}}</td> <!-- Usamos la función user creada en el modelo para unir los campos -->
+                                <td>{{$leave['user']['id_no']}}</td>
+                                <td>{{$leave['purpose']['name']}}</td> <!-- Usamos la función purpose creada en el modelo para unir los campos -->
+                                <td>{{$leave->start_date}}</td>
+                                <td>{{$leave->end_date}}</td>
 								<td>
                                     <!-- Aqui van los botones para las diferentes acciones -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('designation.edit',$designation->id)}}" class="btn btn-info"> Editar </a>
+                                    <a href="{{route('employee.leave.edit',$leave->id)}}" class="btn btn-info"> Editar </a>
 									<!-- Boton de eliminar un año por ID -->
-                                    <a href="{{route('designation.delete',$designation->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    <a href="{{route('employee.leave.delete',$leave->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
                                 </td>
 							</tr>
                             @endforeach
@@ -53,5 +62,4 @@
 
 	  </div>
   </div>
-
 @endsection

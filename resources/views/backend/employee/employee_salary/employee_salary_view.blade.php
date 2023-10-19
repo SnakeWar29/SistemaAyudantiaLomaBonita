@@ -13,9 +13,9 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title"> Designaciones </h3>
+				  <h3 class="box-title"> Salario de empleados </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
-                    <a href="{{route('designation.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir designación </a>
+                    <a href="{{route('employee.registration.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir salario </a>
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -24,21 +24,27 @@
 							<tr>
 								<th width="5%">ID</th>
 								<th> Nombre </th>
-								<th width="25%">Acción</th>
+                                <th> ID identificativo </th>
+                                <th> Fecha de ingreso </th>
+                                <th> Salario </th>
+								<th width="20%">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
-                            <!-- Declaramos la variable user que nos ayudara a traer los datos -->
-                            @foreach($allData as $key => $designation)
+                            <!-- Declaramos la variable que nos ayudara a traer los datos -->
+                            @foreach($allData as $key => $value)
 							<tr>
 								<td>{{$key+1}}</td>  <!-- Boton editar y eliminar pendientes -->
-								<td>{{$designation->name}}</td>
+								<td>{{$value->name}}</td>
+                                <td>{{$value->id_no}}</td>
+                                <td>{{ date('d-m-Y', strtotime($value->join_date))}}</td>
+                                <td>{{$value->salary}}</td>
 								<td>
                                     <!-- Aqui van los botones para las diferentes acciones -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('designation.edit',$designation->id)}}" class="btn btn-info"> Editar </a>
+                                    <a title="Incrementar salario" href="{{route('employee.salary.increment',$value->id)}}" class="btn btn-info"> <i class="fa fa-plus-circle"></i> </a>
 									<!-- Boton de eliminar un año por ID -->
-                                    <a href="{{route('designation.delete',$designation->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    <a title="Reporte PDF" href="{{route('employee.salary.details',$value->id)}}" class="btn btn-primary" >  <i class="fa fa-eye" aria-hidden="true"> </i> </a>
                                 </td>
 							</tr>
                             @endforeach

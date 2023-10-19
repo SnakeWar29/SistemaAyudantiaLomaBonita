@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AdminControlador;
 use App\Http\Controllers\Backend\UsuarioControlador;
 use App\Http\Controllers\Backend\PerfilControlador;
+use App\Http\Controllers\Backend\ControladorPredeterminado;
+
 use App\Http\Controllers\Backend\Setup\CiudadanoClaseControlador;
 use App\Http\Controllers\Backend\Setup\CiudadanoYearControlador;
 use App\Http\Controllers\Backend\Setup\CiudadanoGrupoControlador;
@@ -14,12 +17,23 @@ use App\Http\Controllers\Backend\Setup\TipoDivisaControlador;
 use App\Http\Controllers\Backend\Setup\CiudadanoApoyoControlador;
 use App\Http\Controllers\Backend\Setup\AsignarApoyoControlador;
 use App\Http\Controllers\Backend\Setup\DesignacionControlador;
+
 use App\Http\Controllers\Backend\Citizen\CiudadanoRegistroControlador;
 use App\Http\Controllers\Backend\Citizen\CiudadanoRolControlador;
 use App\Http\Controllers\Backend\Citizen\TarifaRegistroControlador;
 use App\Http\Controllers\Backend\Citizen\TarifaMensualControlador;
-use App\Http\Controllers\Backend\Citizen\TarifaApoyoControlador;
 
+use App\Http\Controllers\Backend\Employee\EmpleadoRegistroControlador;
+use App\Http\Controllers\Backend\Employee\EmpleadoSalarioControlador;
+use App\Http\Controllers\Backend\Employee\EmpleadoAusenciaControlador;
+use App\Http\Controllers\Backend\Employee\EmpleadoAsistenciaControlador;
+use App\Http\Controllers\Backend\Employee\SalarioMensualControlador;
+
+use App\Http\Controllers\Backend\Supports\EntregaApoyoControlador;
+use App\Http\Controllers\Backend\Supports\EstadoApoyoControlador;
+
+use App\Http\Controllers\Backend\Accounts\CiudadanoTarifaControlador;
+use App\Http\Controllers\Backend\Accounts\CuentasSalarioControlador;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,7 +157,6 @@ Route::group([
      // Ruta para eliminar un turno, se activa al pulsar el boton
      Route::get('citizen/shift/delete/{id}',[CiudadanoTurnoControlador::class,'CitizenShiftDelete'])->name('citizen.shift.delete');
 
-
      // Ruta para las categorias de las tarifas (tramites)
      // Ruta para la vista de la tarifa
     Route::get('fee/category/view',[CategoriaTarifaControlador::class,'ViewFeeCat'])->name('fee.category.view');
@@ -157,7 +170,6 @@ Route::group([
     Route::post('fee/category/update/{id}',[CategoriaTarifaControlador::class,'FeeCatUpdate'])->name('update.fee.category');
     // Ruta para eliminar una categoria de tarifa, se activa al pulsar el boton
     Route::get('fee/category/delete/{id}',[CategoriaTarifaControlador::class,'FeeCatDelete'])->name('fee.category.delete');
-
 
      // Rutas para el monto de las tarifas
       // Ruta para la vista del monto de la tarifa
@@ -185,7 +197,6 @@ Route::group([
     Route::post('badge/type/update/{id}',[TipoDivisaControlador::class,'BadgeTypeUpdate'])->name('update.badge.type');
       // Ruta para eliminar una categoria de tarifa, se activa al pulsar el boton
     Route::get('badge/type/delete/{id}',[TipoDivisaControlador::class,'BadgeTypeDelete'])->name('badge.type.delete');
-
 
     // Rutas para el apoyo
      // Rutas prueba
@@ -264,7 +275,7 @@ Route::group([
     Route::post('/reg/roll/store',[CiudadanoRolControlador::class,'CitizenRollStore'])->name('roll.generate.store');
 
 
-    // Rutas para mostrar la vita de la tarifa de registro
+    // Rutas para mostrar la vista de la tarifa de registro
     Route::get('/reg/fee/view',[TarifaRegistroControlador::class,'RegFeeView'])->name('registration.fee.view');
     // Ruta para recuperar la tarifa de los ciudadanos
     Route::get('/reg/fee/classwisedata',[TarifaRegistroControlador::class,'RegFeeClassData'])->name('citizen.registration.fee.classwise.get');
@@ -281,6 +292,116 @@ Route::group([
 
 
 });
+
+// -----------  Rutas para la administración de los empleados  ------------
+Route::group([
+    'prefix' => 'employees',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
+    // Ruta para mostrar la vista de los empleados
+    Route::get('reg/employee/view',[EmpleadoRegistroControlador::class,'EmployeeView'])->name('employee.registration.view');
+    // Ruta para mostrar la vista para añadir empleados
+    Route::get('reg/employee/add',[EmpleadoRegistroControlador::class,'EmployeeAdd'])->name('employee.registration.add');
+    // Ruta para añadir el empleado, al pulsar el botón
+    Route::post('reg/employee/store',[EmpleadoRegistroControlador::class,'EmployeeStore'])->name('store.employee.registration');
+     // Ruta para mostrar la vista de edición
+     Route::get('reg/employee/edit/{id}',[EmpleadoRegistroControlador::class,'EmployeeEdit'])->name('employee.registration.edit');
+       // Ruta para editar el empleado, al pulsar el botón
+    Route::post('reg/employee/update/{id}',[EmpleadoRegistroControlador::class,'EmployeeUpdate'])->name('update.employee.registration');
+    // Ruta para mostrar el PDF de un empleado
+    Route::get('reg/employee/details/{id}',[EmpleadoRegistroControlador::class,'EmployeeDetails'])->name('employee.registration.details');
+
+    // Rutas para el salario del empleados
+    // Ruta para mostrar la vista del salario de empleados
+    Route::get('salary/employee/view',[EmpleadoSalarioControlador::class,'EmployeeSalaryView'])->name('employee.salary.view');
+    // Ruta para mostrar la vista incremento de salario de los empleados
+    Route::get('salary/employee/increment/{id}',[EmpleadoSalarioControlador::class,'EmployeeSalaryIncrement'])->name('employee.salary.increment');
+    // Ruta para actualizar el campo de incremento y el efecto del salario
+    Route::post('salary/employee/store/{id}',[EmpleadoSalarioControlador::class,'EmployeeSalaryStore'])->name('update.salary');
+    // Ruta para mostrar la vista incremento de salario de los empleados
+    Route::get('salary/employee/details/{id}',[EmpleadoSalarioControlador::class,'EmployeeSalaryDetails'])->name('employee.salary.details');
+
+    // Rutas para los dias de ausencia de los empleados
+    // Ruta para mostrar la vista de ausencia de los empleados
+    Route::get('leave/employee/view',[EmpleadoAusenciaControlador::class,'EmployeeLeaveView'])->name('employee.leave.view');
+    // Ruta para mostrar la vista para añadir una ausencia de los empleados
+    Route::get('leave/employee/add',[EmpleadoAusenciaControlador::class,'EmployeeLeaveAdd'])->name('employee.leave.add');
+    // Ruta para añadir la razón de ausencia de empleados, al presionar el boton
+    Route::post('leave/employee/store',[EmpleadoAusenciaControlador::class,'EmployeeLeaveStore'])->name('store.employee.leave');
+    // Ruta para mostrar la vista de edición
+    Route::get('leave/employee/edit/{id}',[EmpleadoAusenciaControlador::class,'EmployeeLeaveEdit'])->name('employee.leave.edit');
+    // Ruta para editar la razón de ausencia, al presionar el botón
+    Route::post('leave/employee/update/{id}',[EmpleadoAusenciaControlador::class,'EmployeeLeaveUpdate'])->name('update.employee.leave');
+    // Ruta para mostrar la vista de edición
+    Route::get('leave/employee/delete/{id}',[EmpleadoAusenciaControlador::class,'EmployeeLeaveDelete'])->name('employee.leave.delete');
+
+    // Rutas para la lista de asistencia de empleados
+    // Ruta para mostrar la vista de la lista de asistencia
+    Route::get('attendance/employee/view',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceView'])->name('employee.attendance.view');
+    // Ruta para mostrar la vista para añadir asistencias
+    Route::get('attendance/employee/add',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceAdd'])->name('employee.attendance.add');
+    // Ruta para añadir la lista de asistencia al presionar el boton
+    Route::post('attendance/employee/store',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceStore'])->name('employee.attendance.store');
+    // Ruta para mostrar la vista para añadir asistencias
+    Route::get('attendance/employee/edit/{date}',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceEdit'])->name('employee.attendance.edit');
+     // Ruta para mostrar la vista para añadir asistencias
+     Route::get('attendance/employee/details/{date}',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceDetails'])->name('employee.attendance.details');
+
+
+     // Rutas para el salario mensual
+    // Ruta para mostrar la vista del salario mensual
+    Route::get('monthly/salary/view',[SalarioMensualControlador::class,'EmployeeMonthlySalaryView'])->name('employee.monthly.salary.view');
+    // Ruta para mostrar los datos recuperados
+    Route::get('monthly/salary/get',[SalarioMensualControlador::class,'EmployeeMonthlySalaryGet'])->name('employee.monthly.salary.get');
+    // Ruta para el el reporte del salario mensual
+    Route::get('monthly/salary/payslip/{employee_id}',[SalarioMensualControlador::class,'EmployeeMonthlySalaryPaySlip'])->name('employee.monthly.salary.payslip');
+});
+
+// -----------  Rutas para la administración de los apoyos  ------------
+Route::group([
+    'prefix' => 'supports',
+    'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+], function(){
+    // Ruta para mostrar
+    Route::get('supports/entry/add',[EntregaApoyoControlador::class,'SupportsAdd'])->name('supports.entry.add');
+    // Ruta para añadir el apoyo otorgado
+    Route::post('supports/entry/store',[EntregaApoyoControlador::class,'SupportsStore'])->name('supports.entry.store');
+    // Ruta para mostrar la edición del apoyo otorgado
+    Route::get('supports/entry/edit',[EntregaApoyoControlador::class,'SupportsEdit'])->name('supports.entry.edit');
+    // Ruta para recuperar los ciudadanos por año y clase en la edición
+     Route::get('citizen/supports/edit/getcitizens',[EntregaApoyoControlador::class,'getCitizensEdit'])->name('citizen.edit.get');
+     // Ruta para editar la asignación de apoyo
+    Route::post('supports/entry/edit/store',[EntregaApoyoControlador::class,'SupportsEditStore'])->name('supports.entry.edit.store');
+});
+
+// Ruta para recuperar los apoyos por clase
+    Route::get('supports/getsupports',[ControladorPredeterminado::class,'getSupport'])->name('marks.getsupports');
+// Ruta para recuperar los ciudadanos por año y clase
+    Route::get('citizen/supports/getcitizens',[ControladorPredeterminado::class,'getCitizens'])->name('citizen.support.getcitizens');
+
+
+// -----------  Rutas para la tarifa de los ciudadanos  ------------
+    Route::group([
+        'prefix' => 'accounts',
+        'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+    ], function(){
+        // Ruta para mostrar la vista de la tarifa de ciudadanos
+        Route::get('citizen/fee/view',[CiudadanoTarifaControlador::class,'CitizenFeeView'])->name('citizen.fee.view');
+        // Ruta para mostrar la vista para añadir/editar una tarifa
+        Route::get('citizen/fee/add',[CiudadanoTarifaControlador::class,'CitizenFeeAdd'])->name('citizen.fee.add');
+        // Ruta para obtener los ciudadanos usando los filtros
+        Route::get('citizen/fee/getcitizens',[CiudadanoTarifaControlador::class,'CitizenFeeGet'])->name('account.fee.getcitizens');
+        // Ruta para añadir las tarifas de los ciudadano
+        Route::post('citizen/fee/store',[CiudadanoTarifaControlador::class,'CitizenFeeStore'])->name('account.fee.store');
+        // Ruta para mostrar la vista del salario de los empleados
+        Route::get('account/salary/view',[CuentasSalarioControlador::class,'AccountSalaryView'])->name('account.salary.view');
+        // Ruta para mostrar la vista para añadir el salario de los empleados
+        Route::get('account/salary/add',[CuentasSalarioControlador::class,'AccountSalaryAdd'])->name('account.salary.add');
+        // Ruta para recuperar los empleados
+        Route::get('account/salary/get',[CuentasSalarioControlador::class,'AccountSalaryGet'])->name('account.salary.getemployee');
+        // Ruta para añadir el salario de los empleados
+        Route::post('account/salary/store',[CuentasSalarioControlador::class,'AccountSalaryStore'])->name('account.salary.store');
+    });
 
 
 

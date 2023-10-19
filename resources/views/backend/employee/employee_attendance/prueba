@@ -1,0 +1,31 @@
+                <table id="example1" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th width="5%">ID</th>
+								<th> Nombre </th>
+                                <th> ID Identificativo </th>
+                                <th> Fecha </th>
+                                <th> Estado de asistencia </th>
+								<th width="25%">Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+                            <!-- Declaramos la variable user que nos ayudara a traer los datos -->
+                            @foreach($allData as $key => $value)
+							<tr>
+								<td>{{$key+1}}</td>
+								<td>{{$value['user']['name']}}</td> <!-- Usamos la función user creada en el modelo para unir los campos -->
+                                <td>{{$value['user']['id_no']}}</td>
+                                <td>{{date('d-m-Y',strtotime($value->date))}}</td> <!-- Usamos los valores directamente  -->
+                                <td>{{$value->attend_status}}</td>
+								<td>
+                                    <!-- Aqui van los botones para las diferentes acciones -->
+									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a href="{{route('employee.leave.edit',$value->id)}}" class="btn btn-info"> Editar </a>
+									<!-- Boton de eliminar un año por ID -->
+                                    <a href="{{route('employee.leave.delete',$value->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                </td>
+							</tr>
+                            @endforeach
+						</tbody>
+</table>

@@ -15,5 +15,4 @@ class AssignSupport extends Model
     public function Assign_support(){
         return $this->belongsTo(SupportType::class,'support_id','id');
     }
-
 }

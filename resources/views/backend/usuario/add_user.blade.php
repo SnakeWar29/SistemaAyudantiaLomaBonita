@@ -32,7 +32,7 @@
 									<option value="" selected="" disabled=""> Selecciona el rol </option>
 									<option value="Admin">Administrador</option>
 									<option value="Encargado">Encargado</option>
-									<option value="Visualizador">Ciudadano</option>
+									<option value="Visualizador">Visualizador</option>
 								</select>
 							</div>
 						</div>
