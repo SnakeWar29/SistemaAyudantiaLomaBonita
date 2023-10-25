@@ -26,7 +26,7 @@
                             <div class="form-group">
                                <h5> Año del ciudadano <span class="text-danger">*</span></h5>
                                <div class="controls">
-                                   <input type="text" name="name" class="form-control" required=""> </div>
+                                   <input type="text" name="name" class="form-control" required="" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" maxlength="4"> </div>
                                     <!-- Se llama a traer el error que marcara cualqier tipo de error usando message -->
                                     @error('name')
                                         <span class="text-danger"> {{$message="Hubo un error al realizar la operación, puede deberse a que el año ya esta registrado"}}</span>

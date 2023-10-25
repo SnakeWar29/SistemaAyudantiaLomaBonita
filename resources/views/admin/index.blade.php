@@ -6,8 +6,9 @@
 	  <div class="container-full">
 
 		<!-- Contenido principal -->
-		
+        
 		<!-- /.Acaba el contenido -->
+
 	  </div>
   </div>
 

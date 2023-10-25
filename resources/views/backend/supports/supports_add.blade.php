@@ -54,7 +54,7 @@
                                         <div class="form-group">
                                             <h5> Apoyo <span class="text-danger"></span></h5>
                                             <div class="controls">
-                                                <select name="assign_support_id" id="assign_support_id" required="" class="form-control">
+                                                <select name="assign_support_id" id="assign_support_id" required="" class="form-control" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                                     <option selected=""> Selecciona el apoyo </option>
 
                                                 </select>

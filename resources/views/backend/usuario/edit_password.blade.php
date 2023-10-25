@@ -16,12 +16,12 @@
 	 <div class="row">
 	   <div class="col">
 		<!-- Inicia el formulario usando POST hacia la ruta de actualizar la contraseña-->
-		<form method="POST" action="{{route('password.update')}}">
+		<form method="POST" action="{{route('password.update.login')}}">
 		   @csrf
 				<!-- -->
                 <div class="row">
                     <div class="col-12">
-                        <!-- Campo para confirmar la contraseña anterior -->	
+                        <!-- Campo para confirmar la contraseña anterior -->
                             <div class="form-group">
                                <h5> Contraseña actual <span class="text-danger">*</span></h5>
                                <div class="controls">
@@ -30,11 +30,11 @@
                                     @error('oldpassword')
                                         <span class="text-danger"> {{$message="La contraseña no coincide con nuestros registros"}}</span>
                                     @enderror
-                                    
+
                              </div>
                 </div>
             </div>
-            <!-- Campo para la nueva contraseña -->		
+            <!-- Campo para la nueva contraseña -->
             <div class="form-group">
                <h5> Nueva contraseña <span class="text-danger">*</span></h5>
                <div class="controls">
@@ -43,9 +43,9 @@
                    @error('password')
                    <span class="text-danger"> {{$message="Las nuevas contraseñas no coinciden"}}</span>
                    @enderror
-             </div>	
+             </div>
 
-            <!-- Campo para confirmar la nueva contraseña -->	
+            <!-- Campo para confirmar la nueva contraseña -->
             <div class="form-group">
                    <h5> Confirmar nueva contraseña <span class="text-danger">*</span></h5>
                    <div class="controls">
@@ -55,18 +55,18 @@
                        <span class="text-danger"> {{$message="Las nuevas contraseñas no coinciden"}}</span>
                        @enderror
             </div>
-    
+
              <div class="text-xs-right">
                 <input type="submit" class="btn btn-rounded btn-info mb-5" value="Cambiar contraseña">
              </div>
-                
+
 		</form> <!-- Termina el formulario -->
 	 </div>
    </div>
  </div>
 
 </section>
-	  
+
 	  </div>
   </div>
 

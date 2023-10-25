@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Notifications\ExitEmailNotification;
+use App\Notifications\WelcomeEmailNotification;
 
 class UsuarioControlador extends Controller
 {
@@ -46,6 +47,7 @@ class UsuarioControlador extends Controller
         // Bcrypt es para poder encriptar la contraseña una vez introducida
         $data->password = bcrypt($code);
         $data->code = $code;
+        $data->notify(new WelcomeEmailNotification);
         $data->save();
 
 
@@ -93,6 +95,7 @@ class UsuarioControlador extends Controller
     // Salida: Eliminación del usuario con coincidencias en la base de datos, al igual que la vista con notificación
     public function UserDelete($id){
         $user = User::find($id);
+        $user->notify(new ExitEmailNotification);
         $user->delete();
 
                 // Inicia procedimiento para notificación dentro del sistema

@@ -21,10 +21,10 @@
 		   <form method="POST" action="{{route('profile.store')}}" enctype="multipart/form-data">
 		   @csrf
 			 <div class="row">
-			   <div class="col-12">	
+			   <div class="col-12">
 				<!-- -->
 				<div class="row"> <!-- Inicia la clase row2-->
-				<div class="col-md-6">		
+				<div class="col-md-6">
 					<!-- Campo para cambiar el nombre -->
 						<div class="form-group">
 					  	 <h5> Nombre completo <span class="text-danger">*</span></h5>
@@ -33,7 +33,7 @@
 				 	    </div>
 					</div>
 					<!-- Campo para cambiar el correo electronico -->
-					<div class="col-md-6">		
+					<div class="col-md-6">
 						<div class="form-group">
                             <h5> Correo Electrónico <span class="text-danger">*</span></h5>
                             <div class="controls">
@@ -41,15 +41,15 @@
                         </div>
 					</div>
                     <!-- Campo para cambiar el telefono -->
-                    <div class="col-md-6">		
+                    <div class="col-md-6">
 						<div class="form-group">
                             <h5> Telefono de contacto <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="mobile" class="form-control" value="{{$editData->mobile}}" required=""> </div>
+                                <input type="text" maxlength="15" name="mobile" class="form-control" value="{{$editData->mobile}}" required="" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                         </div>
 					</div>
                     <!-- Campo para cambiar la dirección personal -->
-                    <div class="col-md-6">		
+                    <div class="col-md-6">
 						<div class="form-group">
                             <h5> Dirección personal <span class="text-danger">*</span></h5>
                             <div class="controls">
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 						<!-- Formulario para editar el nombre de usuario -->
-					<div class="col-md-6">		
+					<div class="col-md-6">
 						<div class="form-group">
 					  	 <h5> Imagen de perfil <span class="text-danger">*</span></h5>
 					  	 <div class="controls">
@@ -90,7 +90,7 @@
                           </div>
 					</div>
 				</div> <!-- Termina row -->
-				
+
 				   <div class="text-xs-right">
 							<input type="submit" class="btn btn-rounded btn-info mb-5" value="Guardar cambios">
 				   </div>
@@ -103,7 +103,7 @@
  </div>
 
 </section>
-	  
+
 	  </div>
   </div>
 

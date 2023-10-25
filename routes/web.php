@@ -34,7 +34,12 @@ use App\Http\Controllers\Backend\Supports\EstadoApoyoControlador;
 
 use App\Http\Controllers\Backend\Accounts\CiudadanoTarifaControlador;
 use App\Http\Controllers\Backend\Accounts\CuentasSalarioControlador;
+use App\Http\Controllers\Backend\Accounts\CostosAdicionalesControlador;
 
+use App\Http\Controllers\Backend\Report\GananciasControlador;
+use App\Http\Controllers\Backend\Report\ReporteAsistenciasControlador;
+
+use App\Http\Controllers\GraficasControlador;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +50,9 @@ use App\Http\Controllers\Backend\Accounts\CuentasSalarioControlador;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['middleware' => 'prevent-back-history'],function(){ // Middleware para prevenir el almacenamiento del cache en pestañas anteriores
+
 // Ruta inicial, en esta ruta sera donde inicie le usuario cuando entre al sistema por primera vez
 Route::get('/', function () {
     return view('auth.login');
@@ -94,7 +102,7 @@ Route::group([
     // Ruta para ver la vista de cambiar la contraseña desde Mi Perfil
     Route::get('/password/view',[PerfilControlador::class,'PasswordView'])->name('password.view');
     // Ruta para cambiar la contraseña desde mi perfil
-    Route::post('/password/update',[PerfilControlador::class,'PasswordUpdate'])->name('password.update');
+    Route::post('/password/update',[PerfilControlador::class,'PasswordUpdate'])->name('password.update.login');
 
 });
 
@@ -385,6 +393,7 @@ Route::group([
         'prefix' => 'accounts',
         'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
     ], function(){
+        // ==================== Tarifa ciudadanos ================
         // Ruta para mostrar la vista de la tarifa de ciudadanos
         Route::get('citizen/fee/view',[CiudadanoTarifaControlador::class,'CitizenFeeView'])->name('citizen.fee.view');
         // Ruta para mostrar la vista para añadir/editar una tarifa
@@ -393,6 +402,8 @@ Route::group([
         Route::get('citizen/fee/getcitizens',[CiudadanoTarifaControlador::class,'CitizenFeeGet'])->name('account.fee.getcitizens');
         // Ruta para añadir las tarifas de los ciudadano
         Route::post('citizen/fee/store',[CiudadanoTarifaControlador::class,'CitizenFeeStore'])->name('account.fee.store');
+
+        // ==================== Salario empleados ================
         // Ruta para mostrar la vista del salario de los empleados
         Route::get('account/salary/view',[CuentasSalarioControlador::class,'AccountSalaryView'])->name('account.salary.view');
         // Ruta para mostrar la vista para añadir el salario de los empleados
@@ -401,7 +412,57 @@ Route::group([
         Route::get('account/salary/get',[CuentasSalarioControlador::class,'AccountSalaryGet'])->name('account.salary.getemployee');
         // Ruta para añadir el salario de los empleados
         Route::post('account/salary/store',[CuentasSalarioControlador::class,'AccountSalaryStore'])->name('account.salary.store');
+
+        // ==================== Costos adicionales ================
+        // Ruta para mostrar la vista de costos adicionales
+        Route::get('other/cost/view',[CostosAdicionalesControlador::class,'OtherCostView'])->name('other.cost.view');
+        // Ruta para mostrar la vista para añadir un costo adicional
+        Route::get('other/cost/add',[CostosAdicionalesControlador::class,'OtherCostAdd'])->name('other.cost.add');
+        // Ruta para añadir otros costos a la tabla de la BD
+        Route::post('other/cost/store',[CostosAdicionalesControlador::class,'OtherCostStore'])->name('store.other.cost');
+        // Ruta para editar un costo adicional
+        Route::get('other/cost/edit/{id}',[CostosAdicionalesControlador::class,'OtherCostEdit'])->name('other.cost.edit');
+        // Ruta para añadir otros costos a la tabla de la BD
+        Route::post('other/cost/update/{id}',[CostosAdicionalesControlador::class,'OtherCostUpdate'])->name('update.other.cost');
     });
+
+        // -----------  Rutas para los reportes generales  ------------
+        Route::group([
+            'prefix' => 'reports',
+            'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+        ], function(){
+            // REPORTES DE GANANCIAS
+            // Ruta para mostrar la interfaz de la ganancia
+            Route::get('/monthly/profit/view',[GananciasControlador::class,'MonthlyProfitView'])->name('monthly.profit.view');
+            // Ruta para recuperar los datos con las fechas
+            Route::get('/monthly/profit/get',[GananciasControlador::class,'MonthlyProfitGet'])->name('report.profit.get');
+            // Ruta para la plantilla del PDF
+            Route::get('/monthly/profit/pdf',[GananciasControlador::class,'MonthlyProfitReport'])->name('report.profit.pdf');
+
+            // REPORTES DE ASISTENCIA
+            // Ruta para mostrar la interfaz de la ganancia
+            Route::get('/attendance/report/view',[ReporteAsistenciasControlador::class,'AttendanceReportView'])->name('attendance.report.view');
+            // Ruta para recuperar los datos con las fechas
+            Route::get('/attendance/report/get',[ReporteAsistenciasControlador::class,'ReportAttendanceGet'])->name('report.attendance.get');
+
+            // Ruta para mostrar todos las graficas de datos de los ciudadanos
+            Route::get('/citizens/graphs/view',[GraficasControlador::class,'CitizensGraphsView'])->name('citizen.graph.view');
+             // Ruta para mostrar el PDF de clases de ciudadanos en graficas
+             Route::get('/citizens/graphs/classes/pdf',[GraficasControlador::class,'CitizensGraphsClass'])->name('citizen.graph.class');
+             // Ruta para mostrar el PDF de años del ciudadano
+             Route::get('/citizens/graphs/year/pdf',[GraficasControlador::class,'CitizensGraphsYear'])->name('citizen.graph.year');
+        });
+
+        // -----------  Rutas para los graficos  ------------
+        Route::group([
+            'prefix' => 'graphs',
+            'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+        ], function(){
+            Route::get('/citizen/graph/view',[GraficasControlador::class,'piechart'])->name('pie.citizen.chart');
+            Route::get('/citizen/graph/classes',[GraficasControlador::class,'CitizenGraphOne'])->name('classes.citizen.chart');
+        });
+});
+
 
 
 

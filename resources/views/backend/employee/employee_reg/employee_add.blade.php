@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <h5> Teléfono del empleado  <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mobile" class="form-control" required="">
+                                    <input type="text" name="mobile" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                     </div>
                                 </div>
 
@@ -172,7 +172,7 @@
                                 <div class="form-group">
                                     <h5> Salario <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="salary" class="form-control" required="">
+                                    <input type="text" name="salary" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                     </div>
                                 </div>
 

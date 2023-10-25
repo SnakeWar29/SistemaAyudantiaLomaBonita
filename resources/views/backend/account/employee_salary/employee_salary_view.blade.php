@@ -32,7 +32,7 @@
 								<td>{{$key+1}}</td>
 								<td>{{$value['employee']['id_no']}}</td>
                                 <td>{{$value['employee']['name']}}</td>
-                                <td>{{number_format($value->amount,3,'.')}} MXN$</td>
+                                <td>{{number_format($value->amount,2,'.')}} MXN$</td>
                                 <td>{{date('M Y', strtotime($value->date))}}</td>
 							</tr>
                             @endforeach

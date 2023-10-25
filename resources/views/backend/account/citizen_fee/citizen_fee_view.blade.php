@@ -39,7 +39,7 @@
                                 <td>{{$value['citizen_class']['name']}}</td>
                                 <td>{{$value['fee_category']['name']}}</td>
                                 <td>{{date('M Y', strtotime($value->date))}}</td>
-                                <td>{{number_format($value->amount,3,'.')}} MXN$</td>
+                                <td>{{number_format($value->amount,2,'.')}} MXN$</td>
 							</tr>
                             @endforeach
 						</tbody>

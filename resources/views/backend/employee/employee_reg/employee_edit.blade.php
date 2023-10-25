@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <h5> Teléfono del empleado  <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mobile" class="form-control" required="" value="{{$editData->mobile}}">
+                                    <input type="text" name="mobile" class="form-control" required="" value="{{$editData->mobile}}" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                     </div>
                                 </div>
 

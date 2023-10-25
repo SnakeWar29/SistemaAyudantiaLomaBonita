@@ -25,7 +25,7 @@ $route = Route::current()->getName();
         </div>
 
       <!-- Menu dde la barra lateral -->
-      <ul class="sidebar-menu" data-widget="tree">
+    <ul class="sidebar-menu" data-widget="tree">
 
         <!-- Se pone la condicion que si es la misma ruta, se mostrara como opción activa en el panel lateral -->
 		<li class="{{($route == 'dashboard')?'active':'' }}">
@@ -141,24 +141,27 @@ $route = Route::current()->getName();
           <ul class="treeview-menu">
             <li class="{{($route == 'citizen.fee.view')?'active':'' }}"><a href="{{route('citizen.fee.view')}}"><i class="ti-more"></i> Tarifa de ciudadanos </a></li>
             <li class="{{($route == 'account.salary.view')?'active':'' }}"><a href="{{route('account.salary.view')}}"><i class="ti-more"></i> Salario del empleado </a></li>
+            <li class="{{($route == 'other.cost.view')?'active':'' }}"><a href="{{route('other.cost.view')}}"><i class="ti-more"></i> Costos adicionales </a></li>
         </ul>
       </li>
 
-        <li class="header nav-small-cap"> Avanzado </li>
+        <li class="header nav-small-cap"> Reportes generales </li>
 
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="grid"></i>
-            <span>Components</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
+
+        <li class="treeview {{($prefix == '/reports')?'active':'' }}">
+            <a href="#">
+              <i data-feather="hard-drive"></i> <span> Gestión de informes </span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="{{($route == 'monthly.profit.view')?'active':'' }}"><a href="{{route('monthly.profit.view')}}"><i class="ti-more"></i> Beneficio mensual/anual </a></li>
+              <li class="{{($route == 'attendance.report.view')?'active':'' }}"><a href="{{route('attendance.report.view')}}"><i class="ti-more"></i> Reporte de asistencias </a></li>
+              <li class="{{($route == 'citizen.graph.view')?'active':'' }}"><a href="{{route('citizen.graph.view')}}"><i class="ti-more"></i> Reporte de ciudadanos </a></li>
           </ul>
         </li>
+
       </ul>
     </section>
 

@@ -262,7 +262,8 @@ footer {
       <div id="notices">
         <div>NOTICE:</div>
         <div class="notice"> Esta información fue tomada directamente del sistema de la Ayudantia Municipal de Loma Bonita, si tiene dudas o desea modificar algúno de los datos, favor de presentarse en la Ayudantia con una identificación oficial y vigente.</div>
-      </div>
+        
+    </div>
     </main>
   </body>
 </html>

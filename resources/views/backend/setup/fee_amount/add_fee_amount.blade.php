@@ -61,7 +61,7 @@
                                         <div class="form-group">
                                             <h5> Monto de la tarifa <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="amount[]" class="form-control" required=""> </div>
+                                            <input type="text" name="amount[]" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
                                 <div class="col-md-2" style="padding-top: 25px;">

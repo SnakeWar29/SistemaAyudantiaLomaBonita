@@ -105,8 +105,8 @@
                                     <!-- Aqui van los botones para las diferentes acciones sobre cada año -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('citizen.registration.edit',$value->citizen_id)}}" class="btn btn-info"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a> <!-- Regresamos la vista de edicion con el id del ciudadano -->
-									<!-- Boton de eliminar un año por ID -->
-                                    <a href="{{route('citizen.registration.promotion',$value->citizen_id)}}" class="btn btn-success"> <i class="fa fa-arrow-up" aria-hidden="true"></i> </a>
+									<!-- Boton de eliminar un año por ID 
+                                    <a href="{{route('citizen.registration.promotion',$value->citizen_id)}}" class="btn btn-success"> <i class="fa fa-arrow-up" aria-hidden="true"></i> </a> -->
                                     <!-- Boton para general un PDF -->
                                     <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-success" target="_blank">  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a>
                                 </td>

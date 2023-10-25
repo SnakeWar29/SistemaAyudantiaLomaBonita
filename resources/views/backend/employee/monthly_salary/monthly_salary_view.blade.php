@@ -55,12 +55,11 @@
                                                         @{{/each}}
                                                     </tbody>
                                                 </table>
+                                                <div class="col-md-4" style="padding-top: 25px;">
+                                                    <a href="{{route('employee.monthly.salary.view')}}" class="btn btn-info" name="search"> Nueva consulta </a>
+                                                </div>
                                             </script>
                                         </div>
-                                        <div class="col-md-4" style="padding-top: 25px;">
-                                            <a href="{{route('employee.monthly.salary.view')}}" class="btn btn-info" name="search"> Nueva consulta </a>
-                                        </div>
-
                                     </div>
                                 </div>
                         </div>

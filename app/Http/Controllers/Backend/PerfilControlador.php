@@ -22,7 +22,7 @@ class PerfilControlador extends Controller
     // Función para editar la información desde Mi Perfil
     public function ProfileEdit(){
         $id = Auth::id();
-        $editData = User::find($id); 
+        $editData = User::find($id);
         return view('backend.usuario.edit_profile',compact('editData'));
     }
 
@@ -36,7 +36,6 @@ class PerfilControlador extends Controller
         $data->gender = $request->gender;
 
         // Subir imagen de perfil
-
         if($request->file('image')){
             $file = $request->file('image');
             @unlink(public_path('upload/user_images/'.$data->image));
@@ -46,14 +45,14 @@ class PerfilControlador extends Controller
         }
         $data->save();
 
-        // Se desplega la notificación 
+        // Se desplega la notificación
         $notification = array(
             'message' => 'Imagen de perfil subida de forma correcta',
             'alert-type' => 'success'
         );
         // Desplegamos la notificación de exito en la view
         return redirect()->route('profile.view')->with($notification);
-    } 
+    }
 
     // Función para retornar la vista para cambiar la contraseña
     public function PasswordView(){
@@ -82,7 +81,7 @@ class PerfilControlador extends Controller
             Auth::logout();
             return redirect()->route('login');
         }else{
-            // Si no se cumple el if, se regresa 
+            // Si no se cumple el if, se regresa
             return redirect()->back();
         }
 

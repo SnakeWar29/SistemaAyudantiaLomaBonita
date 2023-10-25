@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <h5> Teléfono del ciudadano  <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mobile" class="form-control" required="">
+                                    <input type="text" name="mobile" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                     </div>
                                 </div>
 
@@ -157,7 +157,7 @@
                                 <div class="form-group">
                                     <h5> Descuento (%) <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="discount" class="form-control" required="">
+                                        <input type="text" name="discount" class="form-control" required="" maxlength="2" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
                                     </div>
                                 </div>
 

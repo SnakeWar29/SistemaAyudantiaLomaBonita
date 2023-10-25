@@ -3,7 +3,7 @@
 namespace App\Actions\Jetstream;
 
 use Laravel\Jetstream\Contracts\DeletesUsers;
-
+use App\Notifications\ExitEmailNotification;
 class DeleteUser implements DeletesUsers
 {
     /**
