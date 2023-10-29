@@ -15,7 +15,7 @@
                             <!-- Desplega el nombre del usuario logueado-->
                         <h3 class="widget-user-username"> Nombre: {{$user->name}}</h3>
                         <a href="{{route('profile.edit')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Editar perfil </a>
-					    <h6 class="widget-user-desc"> Rol: {{$user->usertype}}</h6>
+					    <h6 class="widget-user-desc"> Rol: {{$user->role}}</h6>
                         <h6 class="widget-user-desc"> Correo electrónico: {{$user->email}}</h6>
                             <!-- Boton para poder editar la información de perfil -->
 					</div>

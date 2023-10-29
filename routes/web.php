@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BaseDatosControlador;
 use App\Http\Controllers\AdminControlador;
 use App\Http\Controllers\Backend\UsuarioControlador;
 use App\Http\Controllers\Backend\PerfilControlador;
@@ -461,6 +461,31 @@ Route::group([
             Route::get('/citizen/graph/view',[GraficasControlador::class,'piechart'])->name('pie.citizen.chart');
             Route::get('/citizen/graph/classes',[GraficasControlador::class,'CitizenGraphOne'])->name('classes.citizen.chart');
         });
+
+                // -----------  Rutas para la exportacion o importacion  ------------
+         Route::group([
+            'prefix' => 'database',
+            'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
+         ], function(){
+            // Ruta para mostrar la vita de la importacion de ciudadanos/empleados/usuarios
+            Route::get('/database/import/view',[BaseDatosControlador::class,'Import'])->name('database.import.view');
+            // Ruta para realizar la importacion
+            Route::post('/database/import/execute',[BaseDatosControlador::class,'ImportExecute'])->name('database.import.execute');
+            // Ruta para exportar ciudadanos/empleados/usuarios
+            Route::get('/database/export/execute',[BaseDatosControlador::class,'ExportExecute'])->name('database.export.execute');
+            // Ruta para exportar clase de los ciudadanos
+            Route::get('/database/citizens/class',[BaseDatosControlador::class,'ExportCitizensClassData'])->name('database.citizens.class');
+            // Ruta para exportar grupo de los ciudadanos
+            Route::get('/database/citizens/group',[BaseDatosControlador::class,'ExportCitizensGroupData'])->name('database.citizens.group');
+            // Ruta para exportar turno de los ciudadanos
+            Route::get('/database/citizens/shift',[BaseDatosControlador::class,'ExportCitizensShiftData'])->name('database.citizens.shift');
+            // Ruta para exportar año de los ciudadanos
+            Route::get('/database/citizens/year',[BaseDatosControlador::class,'ExportCitizensYearData'])->name('database.citizens.year');
+            // Ruta para exportar ña asignación de los ciudadanos
+            Route::get('/database/citizens/assignation',[BaseDatosControlador::class,'ExportCitizensAssignData'])->name('database.citizens.assignation');
+            // Ruta para realizar la importacion de la asignación de ciudadanos
+            Route::post('/database/import/assign',[BaseDatosControlador::class,'ImportAssignCitizensExecute'])->name('database.import.assign.citizens');
+         });
 });
 
 

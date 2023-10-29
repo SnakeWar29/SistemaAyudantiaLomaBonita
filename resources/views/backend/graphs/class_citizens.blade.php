@@ -170,7 +170,7 @@ footer {
         <div><span>CORREO</span> <a href="jose.daemi@hotmail.com">jose.daemi@hotmail.com</a></div>
         <div><span>TELEFONO</span> 7775102765</div>
         <div><span>GENERACIÓN </span>  {{ date("d/M/Y") }} </div>
-        <div><span>TIPO </span> <strong> <u> Grafica informativa </u> </strong> </div>
+        <div><span>TIPO </span> <strong> <u> Gráfica informativa </u> </strong> </div>
       </div>
     </header>
 

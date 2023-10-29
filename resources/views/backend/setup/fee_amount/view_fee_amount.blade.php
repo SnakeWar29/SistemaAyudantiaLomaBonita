@@ -34,11 +34,21 @@
 								<td>{{$key+1}}</td>
 								<td>{{$amount['fee_category']['name']}}</td> <!-- Llamamos a traer la funcion en el modelo y que muestre los datos relacionados con el name -->
 								<td>
+                                    @if(Auth::user()->role=='Admin')
                                     <!-- Aqui van los botones para las diferentes acciones sobre cada tarifa -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('fee.amount.edit',$amount->fee_category_id)}}" class="btn btn-info"> Administrar </a>
 									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('fee.amount.details',$amount->fee_category_id)}}" class="btn btn-primary"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                    <!-- Boton de eliminar un año por ID -->
+                                    <a href="{{route('fee.amount.details',$amount->fee_category_id)}}" class="btn btn-primary"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                    <!-- Boton de eliminar un año por ID -->
+                                    <a href="{{route('fee.amount.details',$amount->fee_category_id)}}" class="btn btn-primary"> Detalles </a>
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

@@ -15,7 +15,9 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Clases de ciudadanos </h3>
                   <!-- Boton que permitira añadir un nuevo usuario desde la misma vista -->
+                  @if(Auth::user()->role=='Admin')
                     <a href="{{route('citizen.class.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir clase </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -28,6 +30,7 @@
 							</tr>
 						</thead>
 						<tbody>
+
                             <!-- Declaramos la variable user que nos ayudara a traer los datos -->
                             @foreach($allData as $key => $citizen)
 							<tr>
@@ -35,10 +38,24 @@
 								<td>{{$citizen->name}}</td>
 								<td>
                                     <!-- Aqui van los botones para las diferentes acciones sobre cada usuario -->
-									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <!-- ADMIN -->
+                                    @if(Auth::user()->role=='Admin')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('citizen.class.edit',$citizen->id)}}" class="btn btn-info"> Editar </a>
 									<!-- Boton de eliminar usuario por ID -->
                                     <a href="{{route('citizen.class.delete',$citizen->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    @endif
+
+                                    <!-- Encargado -->
+                                    @if(Auth::user()->role=='Encargado')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a href="{{route('citizen.class.edit',$citizen->id)}}" class="btn btn-info"> Editar </a>
+                                    @endif
+
+                                    <!-- Visualizador -->
+                                    @if(Auth::user()->role=='Visualizador')
+                                    Permisos insuficientes
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

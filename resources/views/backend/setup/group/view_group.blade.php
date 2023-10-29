@@ -15,7 +15,9 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Grupo del ciudadano </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
+                  @if(Auth::user()->role=='Admin')
                     <a href="{{route('citizen.group.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir grupo </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -34,10 +36,19 @@
 								<td>{{$key+1}}</td>
 								<td>{{$group->name}}</td>
 								<td>
-									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('citizen.group.edit',$group->id)}}" class="btn btn-info"> Editar </a>
-									<!-- Boton de eliminar un año por ID -->
-                                    <a href="{{route('citizen.group.delete',$group->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    @if(Auth::user()->role=='Admin')
+                                        <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                        <a href="{{route('citizen.group.edit',$group->id)}}" class="btn btn-info"> Editar </a>
+									    <!-- Boton de eliminar un año por ID -->
+                                        <a href="{{route('citizen.group.delete',$group->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                        <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                        <a href="{{route('citizen.group.edit',$group->id)}}" class="btn btn-info"> Editar </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                         Permisos insuficientes
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

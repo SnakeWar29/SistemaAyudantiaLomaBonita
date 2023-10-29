@@ -40,11 +40,20 @@
                                 <td>{{ date('d-m-Y', strtotime($value->join_date))}}</td>
                                 <td>{{$value->salary}}</td>
 								<td>
-                                    <!-- Aqui van los botones para las diferentes acciones -->
+                                    @if(Auth::user()->role=='Admin')
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a title="Incrementar salario" href="{{route('employee.salary.increment',$value->id)}}" class="btn btn-info"> <i class="fa fa-plus-circle"></i> </a>
-									<!-- Boton de eliminar un año por ID -->
                                     <a title="Reporte PDF" href="{{route('employee.salary.details',$value->id)}}" class="btn btn-primary" >  <i class="fa fa-eye" aria-hidden="true"> </i> </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a title="Incrementar salario" href="{{route('employee.salary.increment',$value->id)}}" class="btn btn-info"> <i class="fa fa-plus-circle"></i> </a>
+                                    <a title="Reporte PDF" href="{{route('employee.salary.details',$value->id)}}" class="btn btn-primary" >  <i class="fa fa-eye" aria-hidden="true"> </i> </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a title="Reporte PDF" href="{{route('employee.salary.details',$value->id)}}" class="btn btn-primary" >  <i class="fa fa-eye" aria-hidden="true"> </i> </a>
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

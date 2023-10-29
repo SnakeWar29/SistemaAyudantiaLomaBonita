@@ -16,7 +16,12 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Ausencia </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
-                    <a href="{{route('employee.leave.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir ausencia </a>
+                  @if(Auth::user()->role=='Admin')
+                  <a href="{{route('employee.leave.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir ausencia </a>
+                  @endif
+                  @if(Auth::user()->role=='Encargado')
+                  <a href="{{route('employee.leave.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir ausencia </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -43,11 +48,21 @@
                                 <td>{{$leave->start_date}}</td>
                                 <td>{{$leave->end_date}}</td>
 								<td>
+                                    @if(Auth::user()->role=='Admin')
                                     <!-- Aqui van los botones para las diferentes acciones -->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('employee.leave.edit',$leave->id)}}" class="btn btn-info"> Editar </a>
-									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('employee.leave.delete',$leave->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                    <!-- Aqui van los botones para las diferentes acciones -->
+									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a href="{{route('employee.leave.edit',$leave->id)}}" class="btn btn-info"> Editar </a>
+                                    <a href="{{route('employee.leave.delete',$leave->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                    Permisos insuficientes
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

@@ -11,7 +11,12 @@
 			 <div class="box">
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Lista de costos adicionales </h3>
-                    <a href="{{route('other.cost.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir costo adicional </a>
+                  @if(Auth::user()->role=='Admin')
+                  <a href="{{route('other.cost.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir costo adicional </a>
+                  @endif
+                  @if(Auth::user()->role=='Encargado')
+                  <a href="{{route('other.cost.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir costo adicional </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -40,7 +45,15 @@
                                 <td>
                                     <!-- Aqui van los botones para las diferentes acciones-->
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    @if(Auth::user()->role=='Admin')
                                     <center> <a href="{{route('other.cost.edit',$value->id)}}" class="btn btn-info"> Editar </a> </center>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                    <center> <a href="{{route('other.cost.edit',$value->id)}}" class="btn btn-info"> Editar </a> </center>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                    Permisos insuficientes
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

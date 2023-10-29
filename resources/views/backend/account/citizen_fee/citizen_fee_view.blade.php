@@ -11,7 +11,12 @@
 			 <div class="box">
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Lista de tarifas pagadas de ciudadanos </h3>
-                    <a href="{{route('citizen.fee.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir/Editar pago </a>
+                  @if(Auth::user()->role=='Admin')
+                  <a href="{{route('citizen.fee.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir/Editar pago </a>
+                  @endif
+                  @if(Auth::user()->role=='Encargado')
+                  <a href="{{route('citizen.fee.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir/Editar pago </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">

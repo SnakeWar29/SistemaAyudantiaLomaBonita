@@ -15,7 +15,12 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Empleados </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
-                    <a href="{{route('employee.registration.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir empleado </a>
+                  @if(Auth::user()->role=='Admin')
+                  <a href="{{route('employee.registration.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir empleado </a>
+                  @endif
+                  @if(Auth::user()->role=='Encargado')
+                  <a href="{{route('employee.registration.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir empleado </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -50,11 +55,22 @@
                                 <td>{{$employee->code}}</td>
                                 @endif
 								<td>
-                                    <!-- Aqui van los botones para las diferentes acciones -->
-									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    @if(Auth::user()->role=='Admin')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('employee.registration.edit',$employee->id)}}" class="btn btn-info"> Editar </a>
 									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('employee.registration.details',$employee->id)}}" class="btn btn-primary"  target="_blank"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+                                    <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a href="{{route('employee.registration.edit',$employee->id)}}" class="btn btn-info"> Editar </a>
+									<!-- Boton de eliminar un año por ID -->
+                                    <a href="{{route('employee.registration.details',$employee->id)}}" class="btn btn-primary"  target="_blank"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+									<!-- Boton de eliminar un año por ID -->
+                                    <a href="{{route('employee.registration.details',$employee->id)}}" class="btn btn-primary"  target="_blank"> Detalles </a>
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

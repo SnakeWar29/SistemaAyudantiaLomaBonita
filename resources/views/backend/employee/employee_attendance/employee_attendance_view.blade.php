@@ -16,7 +16,12 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Lista de asistencia de los empleados </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
-                    <a href="{{route('employee.attendance.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir asistencia </a>
+                  @if(Auth::user()->role=='Admin')
+                  <a href="{{route('employee.attendance.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir asistencia </a>
+                  @endif
+                  @if(Auth::user()->role=='Encargado')
+                  <a href="{{route('employee.attendance.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir asistencia </a>
+                  @endif
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
@@ -35,11 +40,19 @@
 								<td>{{$key+1}}</td>
                                 <td>{{date('d-m-Y',strtotime($value->date))}}</td> <!-- Usamos los valores directamente  -->
 								<td>
-                                    <!-- Aqui van los botones para las diferentes acciones -->
+                                    @if(Auth::user()->role=='Admin')
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('employee.attendance.edit',$value->date)}}" class="btn btn-info"> Editar </a>
-									<!-- Boton de eliminar un año por ID -->
                                     <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Encargado')
+									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
+                                    <a href="{{route('employee.attendance.edit',$value->date)}}" class="btn btn-info"> Editar </a>
+                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    @endif
+                                    @if(Auth::user()->role=='Visualizador')
+                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    @endif
                                 </td>
 							</tr>
                             @endforeach

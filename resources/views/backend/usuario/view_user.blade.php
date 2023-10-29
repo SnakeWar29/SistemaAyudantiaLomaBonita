@@ -3,7 +3,7 @@
 @section('admin')
 
 <!-- En esta vista sera donde se administraran los usuarios registrados en el sistema -->
-
+@if(Auth::user()->role=='Admin')
 <div class="content-wrapper">
 	  <div class="container-full">
 		<!-- Contenido principal -->
@@ -59,5 +59,28 @@
 
 	  </div>
   </div>
+@endif
 
+@if(Auth::user()->role=='Encargado')
+<div class="content-wrapper">
+    <div class="px-30 my-15 no-print">
+        <div class="callout callout-danger" style="margin-bottom: 0!important;">
+          <h4><i class="fa fa-info"></i> AVISO:</h4>
+          UPS! No tienes permiso para usar esta página!
+        </div>
+      </div>
+</div>
+@endif
+
+@if(Auth::user()->role=='Visualizador')
+<div class="content-wrapper">
+    <div class="px-30 my-15 no-print">
+        <div class="callout callout-danger" style="margin-bottom: 0!important;">
+          <h4><i class="fa fa-info"></i> AVISO:</h4>
+          UPS! No tienes permiso para usar esta página!
+        </div>
+      </div>
+</div>
+
+@endif
 @endsection
