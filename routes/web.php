@@ -252,6 +252,8 @@ Route::group([
 });
 
 // -----------  Rutas para  la administracion de ciudadano  ------------
+// ENTRADA - Acciones del usuario
+// SALIDA - Redireccionamiento a distintas vistas
 Route::group([
     'prefix' => 'citizens',
     'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
@@ -273,6 +275,8 @@ Route::group([
     Route::post('/reg/update/promotion/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenUpdatePromotion'])->name('promotion.citizen.registration');
     // Ruta para generar el pdf del ciudadano individual
     Route::get('/reg/details/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegDetails'])->name('citizen.registration.details');
+    // Ruta para eliminar el ciudadano
+    Route::get('/reg/delete/{citizen_id}',[CiudadanoRegistroControlador::class,'CitizenRegDelete'])->name('citizen.registration.delete');
 
 
     // Ruta para mostrar la vista de generación de rol
@@ -318,6 +322,8 @@ Route::group([
     Route::post('reg/employee/update/{id}',[EmpleadoRegistroControlador::class,'EmployeeUpdate'])->name('update.employee.registration');
     // Ruta para mostrar el PDF de un empleado
     Route::get('reg/employee/details/{id}',[EmpleadoRegistroControlador::class,'EmployeeDetails'])->name('employee.registration.details');
+    // Ruta para eliminar un empleado
+    Route::get('reg/employee/delete/{id}',[EmpleadoRegistroControlador::class,'EmployeeDelete'])->name('employee.registration.delete');
 
     // Rutas para el salario del empleados
     // Ruta para mostrar la vista del salario de empleados
@@ -344,6 +350,8 @@ Route::group([
     Route::get('leave/employee/delete/{id}',[EmpleadoAusenciaControlador::class,'EmployeeLeaveDelete'])->name('employee.leave.delete');
 
     // Rutas para la lista de asistencia de empleados
+    // ENTRADA - Acciones del usuario
+    // SALIDA - Redireccionamiento a distintas vistas
     // Ruta para mostrar la vista de la lista de asistencia
     Route::get('attendance/employee/view',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceView'])->name('employee.attendance.view');
     // Ruta para mostrar la vista para añadir asistencias
@@ -352,8 +360,8 @@ Route::group([
     Route::post('attendance/employee/store',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceStore'])->name('employee.attendance.store');
     // Ruta para mostrar la vista para añadir asistencias
     Route::get('attendance/employee/edit/{date}',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceEdit'])->name('employee.attendance.edit');
-     // Ruta para mostrar la vista para añadir asistencias
-     Route::get('attendance/employee/details/{date}',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceDetails'])->name('employee.attendance.details');
+    // Ruta para mostrar la vista para añadir asistencias
+    Route::get('attendance/employee/details/{date}',[EmpleadoAsistenciaControlador::class,'EmployeeAttendanceDetails'])->name('employee.attendance.details');
 
 
      // Rutas para el salario mensual
@@ -462,7 +470,9 @@ Route::group([
             Route::get('/citizen/graph/classes',[GraficasControlador::class,'CitizenGraphOne'])->name('classes.citizen.chart');
         });
 
-                // -----------  Rutas para la exportacion o importacion  ------------
+        // -----------  Rutas para la exportacion o importacion  ------------
+        // ENTRADA - Acciones del usuario
+        // SALIDA - Redireccionamiento a distintas vistas
          Route::group([
             'prefix' => 'database',
             'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified'],
@@ -485,6 +495,11 @@ Route::group([
             Route::get('/database/citizens/assignation',[BaseDatosControlador::class,'ExportCitizensAssignData'])->name('database.citizens.assignation');
             // Ruta para realizar la importacion de la asignación de ciudadanos
             Route::post('/database/import/assign',[BaseDatosControlador::class,'ImportAssignCitizensExecute'])->name('database.import.assign.citizens');
+            // Ruta para exportar la BD completa
+            Route::get('/database/complete/export',[BaseDatosControlador::class,'respaldo'])->name('database.complete.export');
+            // Ruta para importar la BD completa
+            Route::post('/database/complete/import',[BaseDatosControlador::class,'restauracion'])->name('database.complete.import');
+
          });
 });
 

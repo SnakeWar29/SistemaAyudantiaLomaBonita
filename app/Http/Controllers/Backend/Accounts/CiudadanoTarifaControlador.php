@@ -75,7 +75,7 @@ class CiudadanoTarifaControlador extends Controller
             $discountablefee = $discount/100*$originalfee; // Sacamos ese % de descuento de la tarifa original
             $finalfee = (int)$originalfee-(int)$discountablefee; // Declaramos la tarifa final restandole a la tarifa original, el descuento
 
-            $html[$key]['tdsource'] .='<td>'. '<input type="text" name="amount[]" value="'.$finalfee.' " class="form-control" readonly'.'</td>';
+            $html[$key]['tdsource'] .='<td>'. '<input type="text" readonly="readonly" name="amount[]" value="'.$finalfee.' " class="form-control" readonly'.'</td>';
             $html[$key]['tdsource'] .='<td>'.'<input type="hidden" name="citizen_id[]" value="'.$fee->citizen_id.'">'.'<input type="checkbox" name="checkmanage[]" id="'.$key.'" value="'.$key.'" '.$checked.' style="transform: scale(1.5);margin-left: 10px;"> <label for="'.$key.'"> </label> '.'</td>';
     }
                 return response()->json(@$html);

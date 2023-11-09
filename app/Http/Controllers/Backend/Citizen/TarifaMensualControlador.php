@@ -32,6 +32,8 @@ class TarifaMensualControlador extends Controller
     }
 
      // Función para recuperar y mostrar los datos de los ciudadanos de esa tarifa
+     // ENTRADA - ID del año del ciudadano y de la clase del ciudadano
+     // SALIDA - Datos de ciudadanos en formato JavaScript coincidentes con los datos de entrada
      public function MonthlyFeeClassData(Request $request){
         $year_id = $request->year_id; // Recuperamos el año seleccionado en el form de la vista
         $class_id = $request->class_id; // Recuperamos la clase seleccionada en el form de la vista
@@ -42,7 +44,7 @@ class TarifaMensualControlador extends Controller
             $where[] = ['class_id','like',$class_id.'%'];
         }
         $allCitizen = AssignCitizen::with(['discount'])->where($where)->get();
-        // dd($allCitizen);
+
         $html['thsource']  = '<th> # </th>';   // Usamos la variable thsource creada anteriormente en la vista para los encabezados
         $html['thsource'] .= '<th>ID No</th>';
         $html['thsource'] .= '<th>Nombre del ciudadano</th>';
@@ -54,7 +56,7 @@ class TarifaMensualControlador extends Controller
 
 
         foreach ($allCitizen as $key => $v) { // Por cada registro encontrado anteriormente
-            $registrationfee = FeeCategoryAmount::where('fee_category_id','2')->where('class_id',$v->class_id)->first(); // Apuntamos a la categoria 2, porque es la mensual
+            $registrationfee = FeeCategoryAmount::where('fee_category_id','2')->where('class_id',$v->class_id)->first();
             $color = 'success';
             $html[$key]['tdsource']  = '<td>'.($key+1).'</td>'; // Imprimimos todo el el tdsource, las filas de la tabla
             $html[$key]['tdsource'] .= '<td>'.$v['citizen']['id_no'].'</td>'; // Apuntamos al id

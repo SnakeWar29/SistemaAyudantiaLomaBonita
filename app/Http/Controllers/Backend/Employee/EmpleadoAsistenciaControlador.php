@@ -35,6 +35,9 @@ class EmpleadoAsistenciaControlador extends Controller
         return view('backend.employee.employee_attendance.employee_attendance_add',$data);
     }
 
+    // ENTRADA - Fecha de pase de lista seleccionada en la vista
+    // SALIDA - Insercción masiva de la asistencia de los empleados vinculados a la fecha de entrada / Notificación de éxito
+    // Función para añadir pase de lista para todos los empleados
     public function EmployeeAttendanceStore(Request $request){
         EmployeeAttendance::where('date',date('Y-m-d', strtotime($request->date)))->delete(); // Eliminamos todos los registros anteriores y los sobreescribimos
         $countemployee = count($request->employee_id); // Recuperamos los ID de los empleados
@@ -48,7 +51,7 @@ class EmpleadoAsistenciaControlador extends Controller
         }
          // Retornamos vista con notificación
          $notification = array(
-            'message' => 'Pase de lista completado',
+            'message' => '¡Pase de lista completado! Si la fecha es repetida, se actualizará',
             'alert-type' => 'success'
         );
         // Desplegamos la notificación de exito en la view

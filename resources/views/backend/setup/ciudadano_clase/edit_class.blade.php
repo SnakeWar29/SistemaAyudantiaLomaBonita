@@ -26,7 +26,7 @@
                             <div class="form-group">
                                <h5> Nombre de la clase del ciudadano <span class="text-danger">*</span></h5>
                                <div class="controls">
-                                   <input type="text" name="name" class="form-control" required="" value="{{$editData->name}}"> </div>
+                                   <input type="text" name="name" minlength="5" class="form-control" required="" value="{{$editData->name}}"> </div>
                                     <!-- Se llama a traer el error que marcara cualqier tipo de error usando message -->
                                     @error('name')
                                         <span class="text-danger"> {{$message="Hubo un error al realizar la operación, puede ser porque la clase ya esta registrada"}}</span>

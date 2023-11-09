@@ -44,7 +44,7 @@
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
                             <div class="block">
-                                <input class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Your Email" type="email" name="email" :value="old('email')" required autofocus >
+                                <input class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Correo electrónico" type="email" name="email" :value="old('email')" required autofocus >
                             </div>
 
                             <div class="flex items-center justify-end mt-4">

@@ -41,9 +41,9 @@ class WelcomeEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Tu cuenta del sistema de la Ayudantia Loma Bonita ha sido creada con éxito!')
+                    ->line('¡Tu cuenta del sistema de la ayudantía Loma Bonita ha sido creada con éxito!')
                     ->action('Dirigirse al inicio del sistema', url('/'))
-                    ->line('Para iniciar a usar el sistema, solicite a un personal autorizado su modificación de rol, si ya cuento con un rol asignado, haga caso omiso');
+                    ->line('Para iniciar a usar el sistema, solicite a un personal autorizado su modificación de rol, si ya cuenta con un rol asignado, haga caso omiso');
     }
 
     /**

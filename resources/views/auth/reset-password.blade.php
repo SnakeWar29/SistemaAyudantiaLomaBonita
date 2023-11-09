@@ -26,7 +26,7 @@
 							<h3 class="mb-0 text-white">Reestablecer contraseña </h3>
 						</div>
                         <div class="mb-4 text-sm text-gray-600">
-                            {{ __('Si tu token es valido, rellena los campos solicitados para reestablecer tu contraseña') }}
+                            {{ __('Si tu token es válido, rellena los campos solicitados para reestablecer tu contraseña') }}
                         </div>
 
                         <x-jet-validation-errors class="mb-4" />
@@ -39,23 +39,23 @@
                             <div class="block">
                                 <h5> Correo Electrónico <span class="text-danger">*</span></h5>
                                 <div class="block">
-                                    <x-jet-input id="email" class="form-control pl-15 bg-transparent text-white plc-white" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                                    <x-jet-input id="email" class="form-control pl-15 bg-transparent text-white plc-white"  readonly="readonly" type="email" name="email" :value="old('email', $request->email)" required autofocus />
                                 </div>
                             </div>
 
                             <div class="mt-4">
-                                <h5> Contraseña <span class="text-danger">*</span></h5>
+                                <h5> Nueva contraseña <span class="text-danger">*</span></h5>
                                 <div class="block">
                                     <input id="password" class="form-control pl-15 bg-transparent text-white plc-white" type="password" name="password" required autocomplete="new-password" >
                                 </div>
                             </div>
-
+                            <!--
                             <div class="mt-4">
                                 <h5> Contraseña <span class="text-danger">*</span></h5>
                                 <div class="block">
                                     <input id="password_confirmation" class="form-control pl-15 bg-transparent text-white plc-white" type="password" name="password_confirmation" required autocomplete="new-password" >
                                 </div>
-                            </div>
+                            </div> -->
                             <br><br>
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn btn-info btn-rounded margin-top-10"> Reestablecer contraseña </button>

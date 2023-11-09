@@ -28,7 +28,7 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+								<th width="5%">#</th>
 								<th> Nombre </th>
                                 <th> ID Identificativo </th>
                                 <th> Razón </th>

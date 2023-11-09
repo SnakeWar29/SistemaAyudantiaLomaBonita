@@ -76,7 +76,7 @@
                                                     <th> ID </th>
                                                     <th> Nombre del ciudadano </th>
                                                     <th> Contacto de Emergencia A </th>
-                                                    <th> Genero </th>
+                                                    <th> Género </th>
                                                     <th> Total de apoyo otorgado</th>
                                                 </tr>
                                             </thead>
@@ -117,7 +117,7 @@
             '<td>'+v.citizen.name+'</td>'+
             '<td>'+v.citizen.fname+'</td>'+
             '<td>'+v.citizen.gender+'</td>'+
-            '<td><input type="text" class="form-control form-control-sm" name="marks[]" value="'+v.marks+'"></td>'+
+            '<td><input type="text" class="form-control form-control-sm" minlength="2" maxlength="5" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" name="marks[]" value="'+v.marks+'"></td>'+
             '</tr>';
           });
           html = $('#supports-entry-tr').html(html);  // Se genera la tabla con los datos

@@ -26,7 +26,7 @@
                                 <div class="form-group">
                                     <h5> Monto <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" maxlength="10" name="amount" id="documento" class="form-control"
+                                        <input type="text" maxlength="5" minlength="2" onpaste="return false;" name="amount" id="documento" class="form-control"
                                         required autocomplete="off" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"  min="1" />
                                     </div>
                                 </div>
@@ -37,7 +37,11 @@
                                 <div class="form-group">
                                     <h5> Fecha de aplicación <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="date" name="date" class="form-control" required="">
+                                    <input type="date" name="date" id="date" class="form-control" required="">
+                                    <script>
+                                        var today = new Date().toISOString().split('T')[0];
+                                        document.getElementById("date").setAttribute("max",today);
+                                    </script>
                                     </div>
                                 </div>
 
@@ -45,7 +49,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <h5> Imagen (En caso de ser requerida) <span class="text-danger">*</span></h5>
+                                    <h5> Imagen (En caso de ser requerida) <span class="text-danger"></span></h5>
                                     <div class="controls">
                                   <!-- Campo para subir la imagen-->
                                         <input type="file" name="image" class="form-control" id="image"> </div>
@@ -66,7 +70,7 @@
                                     <div class="form-group">
                                         <h5> Descripción <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <textarea name="description" id="description" class="form-control" required="" placeholder="Introduce la descripción del costo adicional" aria-invalid="false"></textarea>
+                                            <textarea name="description" maxlength="200" minlength="10" id="description" class="form-control" required="" placeholder="Introduce la descripción del costo adicional" aria-invalid="false"></textarea>
                                         <div class="help-block"></div></div>
                                     </div>
                                 </div>

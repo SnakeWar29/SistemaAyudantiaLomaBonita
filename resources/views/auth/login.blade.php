@@ -56,8 +56,8 @@
 								  <div class="row">
 									<div class="col-6">
 									  <div class="checkbox text-white">
-										<input type="checkbox" id="basic_checkbox_1" name="rememberme" >
-										<label for="basic_checkbox_1"> Recordarme </label>
+										<input type="checkbox" id="basic_checkbox_1" value="1" name="rememberme" >
+										 <!-- <label for="basic_checkbox_1"> Recordarme </label> -->
 									  </div>
 									</div>
 									<!-- Ruta para dirigirse al reestablecimiento de contraseña  -->

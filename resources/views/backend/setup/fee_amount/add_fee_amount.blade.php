@@ -18,14 +18,15 @@
 	   <div class="col">
 
         <!-- Se coloca la ruta para añadir la clase, para que sea llamada a la hora de entregar el formulario -->
+        <!-- ENTRADA - Datos del usuario para el monto de la categoría de la tarifa
+             SALIDA - Datos enviados al metodo del controlador -->
 		<form method="POST" action="{{route('store.fee.amount')}}">
 		   @csrf
 				<!-- -->
-
                 <div class="row">
                     <div class="col-12">
                         <div class="add_item">
-                            <!-- Selection box para la categoria de la tarifa-->
+                            <!-- Selection box para la categoría de la tarifa-->
                             <div class="form-group">
                                 <h5> Categoría de la tarifa <span class="text-danger">*</span></h5>
                                 <div class="controls">
@@ -48,7 +49,7 @@
                                             <select name="class_id[]" required="" class="form-control">
                                                 <option value="" selected="" disabled=""> Selecciona la clase </option>
                                                 <!-- Desplegamos la lista de las clases de ciudadanos se usa foreach, para cada uno de los registros -->
-                                                @foreach($classes as $class) <!-- Llamamos a la categoria y extraemos el nombre de cada registro existente -->
+                                                @foreach($classes as $class) <!-- Llamamos a la clase y extraemos el nombre de cada registro existente -->
                                                 <option value="{{$class->id}}">{{$class->name}}</option>
                                                 @endforeach
                                             </select>
@@ -61,7 +62,7 @@
                                         <div class="form-group">
                                             <h5> Monto de la tarifa <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="amount[]" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="amount[]" class="form-control" required="" minlength="2" maxlength="5" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
                                 <div class="col-md-2" style="padding-top: 25px;">

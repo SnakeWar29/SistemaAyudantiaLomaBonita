@@ -29,7 +29,7 @@
 						<div class="form-group">
 					  	 <h5> Nombre completo <span class="text-danger">*</span></h5>
 					  	 <div class="controls">
-							   <input type="text" name="name" class="form-control" value="{{$editData->name}}" required=""> </div>
+							   <input type="text" minlength="10" name="name" class="form-control" value="{{$editData->name}}" required=""> </div>
 				 	    </div>
 					</div>
 					<!-- Campo para cambiar el correo electronico -->
@@ -40,12 +40,12 @@
                                 <input type="email" name="email" class="form-control" value="{{$editData->email}}" required=""> </div>
                         </div>
 					</div>
-                    <!-- Campo para cambiar el telefono -->
+                    <!-- Campo para cambiar el teléfono -->
                     <div class="col-md-6">
 						<div class="form-group">
-                            <h5> Telefono de contacto <span class="text-danger">*</span></h5>
+                            <h5> Teléfono de contacto <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" maxlength="15" name="mobile" class="form-control" value="{{$editData->mobile}}" required="" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                <input type="text" maxlength="10" minlength="10" onpaste="return false;" name="mobile" class="form-control" value="{{$editData->mobile}}" required="" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                         </div>
 					</div>
                     <!-- Campo para cambiar la dirección personal -->
@@ -53,7 +53,7 @@
 						<div class="form-group">
                             <h5> Dirección personal <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="address" class="form-control" value="{{$editData->address}}" required=""> </div>
+                                <input type="text" minlength="10" name="address" class="form-control" value="{{$editData->address}}" required=""> </div>
                         </div>
 					</div>
 				</div> <!-- Termina row2 -->
@@ -62,10 +62,10 @@
 					<div class="col-md-6">
 						<!-- Formulario para editar el rol del usuario  -->
 						<div class="form-group">
-							<h5> Genero <span class="text-danger">*</span></h5>
+							<h5> Género <span class="text-danger">*</span></h5>
 							<div class="controls">
 								<select name="gender" id="gender" required="" class="form-control">
-									<option value="" selected="" disabled=""> Seleccionar genero </option>
+									<option value="" selected="" disabled=""> Seleccionar género </option>
 									<option value="Masculino" {{($editData->gender == "Masculino" ? "selected":"")}}>Masculino</option>
 									<option value="Femenino" {{($editData->gender == "Femenino" ? "selected":"")}}>Femenino</option>
 									<option value="Prefiero no decirlo" {{($editData->gender == "Prefiero no decirlo" ? "selected":"")}}>Prefiero no decirlo</option>
@@ -77,7 +77,7 @@
 						<!-- Formulario para editar el nombre de usuario -->
 					<div class="col-md-6">
 						<div class="form-group">
-					  	 <h5> Imagen de perfil <span class="text-danger">*</span></h5>
+					  	 <h5> Imagen de perfil <span class="text-danger"></span></h5>
 					  	 <div class="controls">
                          <!-- Campo para subir la imagen-->
 							   <input type="file" name="image" class="form-control" id="image"> </div>

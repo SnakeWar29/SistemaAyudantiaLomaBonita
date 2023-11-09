@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                             <h5> Total del apoyo <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="full_support[]" value="{{$edit->full_support}}" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="full_support[]" value="{{$edit->full_support}}" class="form-control" required="" minlength="2" maxlength="5" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 
@@ -72,7 +72,7 @@
                                         <div class="form-group">
                                             <h5> Total de pago mensual <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="monthly_support[]" value="{{$edit->monthly_support}}" class="form-control" required="" maxlength="5" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="monthly_support[]" value="{{$edit->monthly_support}}" class="form-control" required="" minlength="2" maxlength="5" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                             <h5> Total de pagos <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="total_payments[]" value="{{$edit->total_payments}}" class="form-control" required="" maxlength="5" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="total_payments[]" value="{{$edit->total_payments}}" class="form-control" required="" minlength="1" maxlength="2" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 

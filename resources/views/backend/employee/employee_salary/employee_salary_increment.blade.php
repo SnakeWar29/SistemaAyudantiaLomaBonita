@@ -23,7 +23,7 @@
                             <div class="form-group">
                                <h5> Incremento <span class="text-danger">*</span></h5>
                                <div class="controls">
-                                   <input type="text" name="increment_salary" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                   <input type="text" name="increment_salary" class="form-control" required="" minlength="2" maxlength="4" onpaste="return false;"  onkeypress="return (event.charCode >= 45 && event.charCode <= 57 )"> </div>
                              </div>
                     </div>
                     <div class="col-md-4">
@@ -35,7 +35,7 @@
                     </div>
             </div>
              <div class="text-xs-right">
-                <input type="submit" class="btn btn-rounded btn-info mb-5" value="Incrementar salario">
+                <input type="submit" class="btn btn-rounded btn-info mb-5" value="Actualizar salario">
              </div>
 
 		</form> <!-- Termina el formulario -->

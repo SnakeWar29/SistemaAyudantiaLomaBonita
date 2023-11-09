@@ -101,10 +101,10 @@
 
                             <!-- Campo para el nombre de la clase del ciudadno -->
                                 <div class="form-group">
-                                    <h5> Genero del ciudadano <span class="text-danger">*</span></h5>
+                                    <h5> Género del ciudadano <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="gender" id="gender"  required="" class="form-control">
-                                            <option value="" selected="" disabled=""> Selecciona el genero </option>
+                                            <option value="" selected="" disabled=""> Selecciona el género </option>
                                             <option value="Masculino" {{($editData['citizen']['gender'] == 'Masculino')? 'selected':''}}> Masculino </option> <!-- Recuperamos la seleccion si pértenece a este sexo -->
                                             <option value="Femenino"  {{($editData['citizen']['gender'] == 'Femenino')? 'selected':''}} > Femenino </option>
                                             <option value="No binario" {{($editData['citizen']['gender'] == 'No binario')? 'selected':''}}> No binario </option>

@@ -60,7 +60,7 @@
                                                         </tbody>
                                                     </table>
                                                         <div class="col-md-4" style="padding-top: 25px;">
-                                                            <button type="submit" class="btn btn-success" style="margin-top: 10px;"> Registrar pago </button>
+                                                            <button type="submit" class="btn btn-success" style="margin-top: 10px;"> Registrar/Editar pago </button>
                                                         </div>
                                                 </form>
                                                 <!-- boton para recargar la vista y realizar una nueva consulta -->

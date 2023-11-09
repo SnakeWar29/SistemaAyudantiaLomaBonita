@@ -5,6 +5,8 @@
 
 <!-- En esta vista se añadira nuevos años de ciudadanos  -->
 
+@if(Auth::user()->role=='Admin')
+
 <div class="content-wrapper">
 	  <div class="container-full">
 	  <section class="content">
@@ -61,7 +63,7 @@
                                         <div class="form-group">
                                             <h5> Total del apoyo <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="full_support[]" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="full_support[]" class="form-control" required="" minlength="2" maxlength="5" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 
@@ -70,7 +72,7 @@
                                         <div class="form-group">
                                             <h5> Total de pago mensual <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="monthly_support[]" class="form-control" required="" maxlength="5" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="monthly_support[]" class="form-control" required="" minlength="2" maxlength="5" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 
@@ -79,7 +81,7 @@
                                         <div class="form-group">
                                             <h5> Total de pagos <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                            <input type="text" name="total_payments[]" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="total_payments[]" class="form-control" required="" minlength="1" maxlength="2" onpaste="return false;" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
 
@@ -160,6 +162,29 @@
             </div>
         </div>
   </div>
+@endif
+<!-- EN CASO DE QUE NO SEA USUARIO AUTORIZADO -->
+@if(Auth::user()->role=='Encargado')
+<div class="content-wrapper">
+    <div class="px-30 my-15 no-print">
+        <div class="callout callout-danger" style="margin-bottom: 0!important;">
+          <h4><i class="fa fa-info"></i> AVISO:</h4>
+          UPS! No tienes permiso para usar esta página!
+        </div>
+      </div>
+</div>
+@endif
+
+@if(Auth::user()->role=='Visualizador')
+<div class="content-wrapper">
+    <div class="px-30 my-15 no-print">
+        <div class="callout callout-danger" style="margin-bottom: 0!important;">
+          <h4><i class="fa fa-info"></i> AVISO:</h4>
+          UPS! No tienes permiso para usar esta página!
+        </div>
+      </div>
+</div>
+@endif
 
   <!-- Codigo de javaScript para añadir y eliminar el cuadro para añadir nueva tarifa en una consulta-->
   <script type="text/javascript">

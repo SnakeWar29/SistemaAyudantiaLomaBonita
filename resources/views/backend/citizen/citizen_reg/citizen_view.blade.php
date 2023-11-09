@@ -16,16 +16,19 @@
                           <h4 class="box-title"> <strong> Buscar ciudadanos </strong></h4>
                         </div>
                         <!-- Inicia el form para poder filtrar ciudadanos -->
-
+                        <!-- ENTRADA - Información del ciudadano en los campos
+                             SALIDA - Ciudadanos que coincidan con la busqueda -->
                         <div class="box-body">
                             <form method="GET" action="{{route('citizen.year.class.wise')}}">
                                 <div class="row">
+                                    <!-- Campo para el año del ciudadano -->
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <h5> Año del ciudadano <span class="text-danger"></span></h5>
                                             <div class="controls">
                                                 <select name="year_id" required="" class="form-control">
                                                     <option value="" selected="" disabled=""> Selecciona el año </option>
+                                                    <!-- Se mostrara cada año registrado -->
                                                     @foreach($years as $year)
                                                     <option value="{{$year->id}}" {{($year_id == $year->id)? "selected":""}}> {{$year->name}} </option>  <!-- Creamos un ciclo para recuperar todos los años registrados -->
                                                     @endforeach
@@ -33,13 +36,14 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Campo para la clase del ciudadano -->
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <h5> Clase del ciudadano <span class="text-danger"></span></h5>
                                             <div class="controls">
                                                 <select name="class_id" required="" class="form-control">
                                                     <option value="" selected="" disabled=""> Selecciona la clase </option>
+                                                    <!-- Se mostrara cada clase ciudadano -->
                                                     @foreach($classes as $class)
                                                     <option value="{{$class->id}}" {{($class_id == $class->id)? "selected":""}}> {{$class->name}} </option>
                                                     @endforeach
@@ -47,7 +51,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Boton para enviar el formulario -->
                                     <div class="col-md-4" style="padding-top: 25px;">
                                         <input type="submit" class="btn btn-dark mb-5" name="search" value="Buscar ciudadano">
                                     </div>
@@ -72,23 +76,21 @@
 				</div>
 				<div class="box-body">
 					<div class="table-responsive">
-
-                        <!-- Se coloca un IF para mostrar solo los datos encontrados con el formulario de busqueda -->
- <!-- Aqui va el @  -  if -->
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+                                <!-- Campos para mostrar la información -->
+								<th width="5%">#</th>
 								<th> Nombre </th>
-                                <th> Numero de ID </th>
+                                <th> Número de ID </th>
                                 <th> Rol </th>
                                 <th> Año </th>
                                 <th> Clase </th>
                                 <th> Imagen </th>
-                                <!--  Hacer que el codigo solo pueda ser visualizado por un administrador -->
+                                <!--  Hacer que el codigo solo pueda ser visualizado por un administrador
                                 @if (Auth::user()->role == "Admin")
                                 <th> Código </th>
-                                @endif
+                                @endif-->
 								<th width="25%">Acción</th>
 							</tr>
 						</thead>
@@ -105,25 +107,24 @@
                                 <td>
                                     <img src="{{(!empty($value['citizen']['image']))? url('upload/citizen_images/'.$value['citizen']['image']):url('upload/sin_imagen.jpg') }}" style="width: 60px; width: 60px;">
                                 </td>
-                                @if (Auth::user()->role == "Admin")
-                                <td>{{$value['citizen']['code']}}</td>
-                                @endif
 								<td>
                                     @if(Auth::user()->role=='Admin')
                                     <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('citizen.registration.edit',$value->citizen_id)}}" class="btn btn-info"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a> <!-- Regresamos la vista de edicion con el id del ciudadano -->
+                                    <a href="{{route('citizen.registration.edit',$value->citizen_id)}}" class="btn btn-info mb-5"> Editar </a>
+                                    <a href="{{route('citizen.registration.delete',$value->citizen_id)}}" class="btn btn-danger mb-5" id="delete"> Eliminar </a>
                                     <!-- Boton para general un PDF -->
-                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-success" target="_blank">  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a>
+                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-primary mb-5" target="_blank"> PDF </a>
                                     @endif
                                     @if(Auth::user()->role=='Encargado')
                                     <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
-                                    <a href="{{route('citizen.registration.edit',$value->citizen_id)}}" class="btn btn-info"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a> <!-- Regresamos la vista de edicion con el id del ciudadano -->
+                                    <a href="{{route('citizen.registration.edit',$value->citizen_id)}}" class="btn btn-info"> Editar </a>
+                                    <a href="{{route('citizen.registration.delete',$value->citizen_id)}}" class="btn btn-danger mb-5" id="delete"> Eliminar </a>
                                     <!-- Boton para general un PDF -->
-                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-success" target="_blank">  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a>
+                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-primary mb-5" target="_blank"> PDF </a>
                                     @endif
                                     @if(Auth::user()->role=='Visualizador')
                                     <!-- Boton para general un PDF -->
-                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-success" target="_blank">  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a>
+                                    <a href="{{route('citizen.registration.details',$value->citizen_id)}}" class="btn btn-primary mb-5" target="_blank"> PDF </a>
                                     @endif
                                 </td>
 							</tr>

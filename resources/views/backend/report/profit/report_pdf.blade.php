@@ -168,7 +168,7 @@ footer {
         <div><span>AYUDANTE</span> C. José Pérez López </div>
         <div><span>DIRECCIÓN</span>Prolongación Articulo 127 S/N</div>
         <div><span>CORREO</span> <a href="jose.daemi@hotmail.com">jose.daemi@hotmail.com</a></div>
-        <div><span>TELEFONO</span> 7775102765</div>
+        <div><span>TELÉFONO</span> 7775102765</div>
         <div><span>GENERACIÓN </span>  {{ date("d/M/Y") }} </div>
         <div><span>TIPO </span> <strong> <u> Reporte de ganancias mensuales </u> </strong> </div>
       </div>
@@ -184,7 +184,7 @@ footer {
 
         // Se define una variable con el total de gastos usando las variables anteriores
         $total_cost = $other_cost+$emp_salary;
-        // Se define una variable con las ganancias totales, estas siendo las tarifas pagadas de ciudadanos menos los costos anteriores
+        // Se define una variable con las ganancias totales, estás siendo las tarifas pagadas de ciudadanos menos los costos anteriores
         $profit = $citizen_fee-$total_cost;
     @endphp
 

@@ -12,15 +12,13 @@
 		<section class="content">
 		  <div class="row">
 			<div class="col-12">
-                    <!-- Cuadro para la busqueda personalizada de los ciduadanos -->
+                    <!-- Cuadro para la busqueda personalizada de los ciudadanos -->
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
                           <h4 class="box-title"> <strong> Tarifa de registro </strong></h4>
                         </div>
                         <!-- Inicia el form para poder filtrar ciudadanos -->
-
                         <div class="box-body">
-
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -28,8 +26,9 @@
                                             <div class="controls">
                                                 <select name="year_id" id="year_id" required="" class="form-control">
                                                     <option value="" selected="" disabled=""> Selecciona el año </option>
+                                                    <!-- Creamos un ciclo para recuperar todos los años registrados -->
                                                     @foreach($years as $year)
-                                                    <option value="{{$year->id}}"> {{$year->name}} </option>  <!-- Creamos un ciclo para recuperar todos los años registrados -->
+                                                    <option value="{{$year->id}}"> {{$year->name}} </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -42,6 +41,7 @@
                                             <div class="controls">
                                                 <select name="class_id" id="class_id" required="" class="form-control">
                                                     <option value="" selected="" disabled=""> Selecciona la clase </option>
+                                                    <!-- Creamos un ciclo para recuperar todos las clases registradas -->
                                                     @foreach($classes as $class)
                                                     <option value="{{$class->id}}"> {{$class->name}} </option>
                                                     @endforeach
@@ -80,11 +80,8 @@
                                         <div class="col-md-4" style="padding-top: 25px;">
                                             <a href="{{route('registration.fee.view')}}" class="btn btn-info" name="search"> Nueva consulta </a>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                         </div>
                     </div>
             </div>

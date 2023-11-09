@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <h5> Nombre del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="name" class="form-control" required="" value="{{$editData->name}}">
+                                    <input type="text" name="name" minlength="10" class="form-control" required="" value="{{$editData->name}}">
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <h5> Contacto de emergencia A <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="fname" class="form-control" required="" value="{{$editData->fname}}">
+                                    <input type="text" name="fname" minlength="10" class="form-control" required="" value="{{$editData->fname}}">
                                     </div>
                                 </div>
 
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <h5> Contacto de emergencia B <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mname" class="form-control" required="" value="{{$editData->mname}}">
+                                    <input type="text" name="mname" minlength="10" class="form-control" required="" value="{{$editData->mname}}">
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <h5> Teléfono del empleado  <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mobile" class="form-control" required="" value="{{$editData->mobile}}" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
+                                    <input type="text" name="mobile" class="form-control" required="" value="{{$editData->mobile}}" maxlength="10" minlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                                     </div>
                                 </div>
 
@@ -89,7 +89,7 @@
                                 <div class="form-group">
                                     <h5> Dirección del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="address" class="form-control" required="" value="{{$editData->address}}">
+                                    <input type="text" name="address" minlength="10" class="form-control" required="" value="{{$editData->address}}">
                                     </div>
                                 </div>
 
@@ -100,10 +100,10 @@
 
                             <!-- Campo para el nombre de la clase del ciudadno -->
                                 <div class="form-group">
-                                    <h5> Genero del empleado <span class="text-danger">*</span></h5>
+                                    <h5> Género del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="gender" id="gender"  required="" class="form-control">
-                                            <option value="" selected="" disabled=""> Selecciona el genero </option>
+                                            <option value="" selected="" disabled=""> Selecciona el género </option>
                                             <option value="Masculino" {{($editData->gender == 'Masculino')? 'selected':''}}> Masculino </option>
                                             <option value="Femenino" {{($editData->gender == 'Femenino')? 'selected':''}}> Femenino </option>
                                             <option value="No binario" {{($editData->gender == 'No binario')? 'selected':''}}> No binario </option>
@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     <h5> Fecha de nacimiento <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="date" name="dob" class="form-control" required="" value="{{$editData->dob}}">
+                                    <input type="date" name="dob" class="form-control" max="2023-11-06" required="" value="{{$editData->dob}}">
                                     </div>
                                 </div>
 

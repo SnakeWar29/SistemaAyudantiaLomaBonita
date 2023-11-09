@@ -168,7 +168,7 @@ footer {
         <div><span>AYUDANTE</span> C. José Pérez López </div>
         <div><span>DIRECCIÓN</span>Prolongación Articulo 127 S/N</div>
         <div><span>CORREO</span> <a href="jose.daemi@hotmail.com">jose.daemi@hotmail.com</a></div>
-        <div><span>TELEFONO</span> 7775102765</div>
+        <div><span>TELÉFONO</span> 7775102765</div>
         <div><span>GENERACIÓN </span>  {{ date("d/M/Y") }} </div>
         <div><span>TIPO </span>  Reporte de ciudadano </div>
       </div>
@@ -200,7 +200,7 @@ footer {
           </tr>
           <tr>
             <td class="service"><center> <strong> 4 </strong></center></td>
-            <td class="desc"> <center> <strong> Telefono </strong> </center> </td>
+            <td class="desc"> <center> <strong> Teléfono </strong> </center> </td>
             <td class="desc"> <center> {{ $details['citizen']['mobile']}} </center></td>
           </tr>
           <tr>
@@ -262,7 +262,7 @@ footer {
       <div id="notices">
         <div>NOTICE:</div>
         <div class="notice"> Esta información fue tomada directamente del sistema de la Ayudantia Municipal de Loma Bonita, si tiene dudas o desea modificar algúno de los datos, favor de presentarse en la Ayudantia con una identificación oficial y vigente.</div>
-        
+
     </div>
     </main>
   </body>

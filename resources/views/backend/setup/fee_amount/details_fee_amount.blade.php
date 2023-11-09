@@ -24,7 +24,7 @@
                         <thead class="thead-light"
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+								<th width="5%">#</th>
 								<th>Clase del ciudadano</th>
 								<th width="25%">Monto de la tarifa</th>
 							</tr>

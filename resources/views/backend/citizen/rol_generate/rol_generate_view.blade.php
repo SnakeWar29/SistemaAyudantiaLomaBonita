@@ -65,7 +65,7 @@
                                                     <th> ID </th>
                                                     <th> Nombre del ciudadano </th>
                                                     <th> Contacto de Emergencia A </th>
-                                                    <th> Genero </th>
+                                                    <th> Género </th>
                                                     <th> Rol </th>
                                                 </tr>
                                             </thead>

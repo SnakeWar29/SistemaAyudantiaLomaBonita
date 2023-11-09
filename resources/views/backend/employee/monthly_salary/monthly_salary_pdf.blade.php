@@ -168,19 +168,20 @@ footer {
         <div><span>AYUDANTE</span> C. José Pérez López </div>
         <div><span>DIRECCIÓN</span>Prolongación Articulo 127 S/N</div>
         <div><span>CORREO</span> <a href="jose.daemi@hotmail.com">jose.daemi@hotmail.com</a></div>
-        <div><span>TELEFONO</span> 7775102765</div>
+        <div><span>TELÉFONO</span> 7775102765</div>
         <div><span>GENERACIÓN </span>  {{ date("d/M/Y") }} </div>
         <div><span>TIPO </span> <strong> <u> Reporte de salario mensual de empleados </u> </strong> </div>
       </div>
     </header>
 
     @php
+        // Realizamos calculos con PHP
         $date = date('Y-m',strtotime($details['0']->date));
         if ($date !='') {
             $where[] = ['date','like',$date.'%'];  // Verificamos si los campos no estan vacios, es decir, la selección por defecto
         }
             $totalattend = App\Models\EmployeeAttendance::with(['user'])->where($where)->where('employee_id',$details['0']->employee_id)->get(); // Usamos toda la ruta del controlador
-            $salary = (float)$details['0']['user']['salary']; // recuperamos el salario
+            $salary = (float)$details['0']['user']['salary']; // Recuperamos el salario
             $salaryperday = (float)$salary/30; // Declaramos el salario por dia, dividiendo entre 30 (mes)
             $absentcount = count($totalattend->where('attend_status','Ausente')); // Recuperamos los registros con justificación
             $totalsalaryminus = (float)$absentcount*(float)$salaryperday; // recuperamos el cuento de los justificados y se multiplica por el salario por dia

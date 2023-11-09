@@ -53,6 +53,9 @@ class CiudadanoRegistroControlador extends Controller
         return view ('backend.citizen.citizen_reg.citizen_add',$data);
     }
 
+    // ENTRADA - Datos del ciudadano obtenidos en la vista add
+    // SALIDA - Registro de datos del ciudadano en la BD / Notificación de éxito
+    // Función para añadir un nuevo ciudadano a la base de datos
     public function CitizenRegStore(Request $request){
         // El ID del ciudadano se generara por el Año, XXXX y el numero en orden
         // Ejem. 20220001, 20220002, 20220003
@@ -240,6 +243,20 @@ class CiudadanoRegistroControlador extends Controller
             'alert-type' => 'success'
         );
         // Desplegamos la notificación de exito en la view
+        return redirect()->route('citizen.registration.view')->with($notification);
+    }
+
+    public function CitizenRegDelete(Request $request,$citizen_id){
+        $citizen = User::find($citizen_id);
+        $assign_citizen = DB::delete(DB::raw("delete from assign_citizens where citizen_id='$citizen_id'"));
+        $citizen->delete();
+        // Inicia procedimiento para notificación dentro del sistema
+        $notification = array(
+            'message' => 'Ciudadano eliminado exitosamente',
+            'alert-type' => 'info'
+        );
+
+        // Desplegamos la notificación de exito
         return redirect()->route('citizen.registration.view')->with($notification);
     }
 

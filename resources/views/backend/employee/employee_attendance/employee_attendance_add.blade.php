@@ -26,6 +26,9 @@
                                     <h5> Fecha de la asistencia <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <input type="date" name="date" id="date" class="form-control" required=""> </div>
+                                        @error('date')
+                                        <span class="text-danger"> {{$message="¡Fecha de lista repetida! Edita la fecha en los registros"}}</span>
+                                        @enderror
                                         <script>
                                             var today = new Date().toISOString().split('T')[0];
                                             document.getElementById("date").setAttribute("max",today);

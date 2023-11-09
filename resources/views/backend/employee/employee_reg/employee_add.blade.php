@@ -26,11 +26,11 @@
                         <div class="row">
                             <div class="col-md-4">
 
-                                    <!-- Campo para el nombre de la clase del ciudadno -->
+                                    <!-- Campo para el nombre del empleado -->
                                 <div class="form-group">
                                     <h5> Nombre del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="name" class="form-control" required="">
+                                    <input type="text" name="name" minlength="10" class="form-control" required="">
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <h5> Contacto de emergencia A <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="fname" class="form-control" required="">
+                                    <input type="text" name="fname" minlength="10" class="form-control" required="">
                                     </div>
                                 </div>
 
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <h5> Contacto de emergencia B <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mname" class="form-control" required="">
+                                    <input type="text" name="mname" minlength="10" class="form-control" required="">
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <h5> Teléfono del empleado  <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="mobile" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
+                                    <input type="text" name="mobile" minlength="10" onpaste="return false;" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                                     </div>
                                 </div>
 
@@ -89,7 +89,7 @@
                                 <div class="form-group">
                                     <h5> Dirección del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="address" class="form-control" required="">
+                                    <input type="text" name="address" minlength="10" class="form-control" required="">
                                     </div>
                                 </div>
 
@@ -100,10 +100,10 @@
 
                             <!-- Campo para el nombre de la clase del ciudadno -->
                                 <div class="form-group">
-                                    <h5> Genero del empleado <span class="text-danger">*</span></h5>
+                                    <h5> Género del empleado <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="gender" id="gender"  required="" class="form-control">
-                                            <option value="" selected="" disabled=""> Selecciona el genero </option>
+                                            <option value="" selected="" disabled=""> Selecciona el género </option>
                                             <option value="Masculino"> Masculino </option>
                                             <option value="Femenino"> Femenino </option>
                                             <option value="No binario"> No binario </option>
@@ -146,7 +146,11 @@
                                 <div class="form-group">
                                     <h5> Fecha de nacimiento <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="date" name="dob" class="form-control" required="">
+                                    <input type="date" id="date" name="dob" max="2023-11-06" class="form-control" required="">
+                                    <script>
+                                        var today = new Date().toISOString().split('T')[0];
+                                        document.getElementById("date").setAttribute("max",today);
+                                    </script>
                                     </div>
                                 </div>
 
@@ -172,7 +176,7 @@
                                 <div class="form-group">
                                     <h5> Salario <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="text" name="salary" class="form-control" required="" maxlength="10" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)">
+                                    <input type="text" name="salary" minlength="3" onpaste="return false;" class="form-control" required="" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                                     </div>
                                 </div>
 
@@ -183,7 +187,11 @@
                                 <div class="form-group">
                                     <h5> Fecha de ingreso <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                    <input type="date" name="join_date" class="form-control" required="">
+                                    <input type="date" name="join_date" id="join_date" max="2023-11-06" class="form-control" required="">
+                                    <script>
+                                        var today = new Date().toISOString().split('T')[0];
+                                        document.getElementById("join_date").setAttribute("max",today);
+                                    </script>
                                     </div>
                                 </div>
 
@@ -206,7 +214,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <h5> Imagen de perfil <span class="text-danger">*</span></h5>
+                                    <h5> Imagen de perfil <span class="text-danger"></span></h5>
                                     <div class="controls">
                                   <!-- Campo para subir la imagen-->
                                         <input type="file" name="image" class="form-control" id="image"> </div>

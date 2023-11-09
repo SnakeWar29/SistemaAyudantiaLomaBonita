@@ -67,7 +67,7 @@
                                             <h5> Monto de la tarifa <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                  <!-- Recuperamos el total del monto registrado, solo hay uno, por lo cual no es necesario tanto comando -->
-                                            <input type="text" name="amount[]" value="{{$edit->amount}}" class="form-control" required="" maxlength="15" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
+                                            <input type="text" name="amount[]" minlength="2" maxlength="5" value="{{$edit->amount}}" class="form-control" required="" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)"> </div>
                                         </div>
                                 </div>
                                 <div class="col-md-2" style="padding-top: 25px;">

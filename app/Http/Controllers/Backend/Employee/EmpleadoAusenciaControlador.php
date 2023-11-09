@@ -35,6 +35,13 @@ class EmpleadoAusenciaControlador extends Controller
         return view('backend.employee.employee_leave.employee_leave_add',$data);
     }
 
+    // ENTRADA - Opción seleccionada en las razones de ausencia
+    // SALIDA
+    // Caso 1 - Insercción de nueva razón de ausencia si el campo seleccionado es 0, es decir, otro
+    // Insercción de datos de ausencia a BD / Notificación de éxito
+    // Caso 2 - Insercción de una razón de ausencia previamente registrada
+    // Insercción de datos de ausencia a BD / Notificación de éxito
+    // Función para añadir la ausencia de un empleado
     public function EmployeeLeaveStore(Request $request){
         if($request->leave_purpose_id == "0"){ // Si el campo Otro esta seleccionado, se insertaran los datos de una nueva razón
             $leavepurpose = new LeavePurpose();

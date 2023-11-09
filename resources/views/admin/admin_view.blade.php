@@ -65,8 +65,8 @@
 
           // Se usa el comando extraido de Sweetalert2
               Swal.fire({
-                title: '¿Estas seguro de eliminar el registro?',
-                text: "No se podra recuperar el registro posteriormente",
+                title: '¿Estás seguro de eliminar el registro?',
+                text: "No se podrá recuperar el registro posteriormente",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

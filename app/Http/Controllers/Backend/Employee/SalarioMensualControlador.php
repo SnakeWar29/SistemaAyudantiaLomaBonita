@@ -28,6 +28,11 @@ class SalarioMensualControlador extends Controller
         return view('backend.employee.monthly_salary.monthly_salary_view');
     }
 
+    // ENTRADA - Fecha de consulta seleccionada en la vista / salario asignado del empleado
+    // Estado de asistencia de todos los pases de lista del empleado
+    // SALIDA - Tabla generada con JavaScript con los datos del empleado, destacando el salario mensual
+    // Salario dependerá del total de asistencias/ inasistencias
+    // Función para mostrar el salario mensual correspondiente a cada empleado
     public function EmployeeMonthlySalaryGet(Request $request){
         $date = date('Y-m',strtotime($request->date));
         if ($date !='') {
@@ -56,7 +61,7 @@ class SalarioMensualControlador extends Controller
             $totalsalaryminus = (float)$absentcount*(float)$salaryperday; // recuperamos el cuento de los justificados y se multiplica por el salario por dia
             $totalsalary = (float)$salary-(float)$totalsalaryminus; // Restamos la cantidad al salario base
 
-            $html[$key]['tdsource'] .='<td>'.number_format($totalsalary,3,'.').' MXN$'.'</td>';
+            $html[$key]['tdsource'] .='<td>'.number_format($totalsalary,2,'.').' MXN$'.'</td>';
             $html[$key]['tdsource'] .='<td>';
             $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("employee.monthly.salary.payslip",$attend->employee_id).'"> Consultar </a>';
             $html[$key]['tdsource'] .= '</td>';

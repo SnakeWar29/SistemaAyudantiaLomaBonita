@@ -3,7 +3,6 @@
 @section('admin')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<!-- En esta vista sera donde se administraran los tipos de tarifas  -->
 
 <div class="content-wrapper">
 	  <div class="container-full">
@@ -16,6 +15,7 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title"> Lista de asistencia de los empleados </h3>
                   <!-- Boton que permitira añadir un nuevo año desde la misma vista -->
+                  <!-- Solo visible para usuarios Admin o Encargado -->
                   @if(Auth::user()->role=='Admin')
                   <a href="{{route('employee.attendance.add')}}" style="float: right;" class="btn btn-rounded btn-success mb-5"> Añadir asistencia </a>
                   @endif
@@ -28,7 +28,8 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+                                <!-- Campos de información -->
+								<th width="5%">#</th>
                                 <th> Fecha (D-M-A) </th>
 								<th width="25%">Acción</th>
 							</tr>
@@ -43,15 +44,14 @@
                                     @if(Auth::user()->role=='Admin')
 									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('employee.attendance.edit',$value->date)}}" class="btn btn-info"> Editar </a>
-                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-primary"> Detalles </a>
                                     @endif
                                     @if(Auth::user()->role=='Encargado')
-									<!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->
                                     <a href="{{route('employee.attendance.edit',$value->date)}}" class="btn btn-info"> Editar </a>
-                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-primary"> Detalles </a>
                                     @endif
                                     @if(Auth::user()->role=='Visualizador')
-                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-success"> Detalles </a>
+                                    <a href="{{route('employee.attendance.details',$value->date)}}" class="btn btn-primary"> Detalles </a>
                                     @endif
                                 </td>
 							</tr>

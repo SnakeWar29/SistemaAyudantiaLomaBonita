@@ -105,12 +105,18 @@ class EmpleadoRegistroControlador extends Controller
         return redirect()->route('employee.registration.view')->with($notification);
     }
 
+    // ENTRADA - ID recuperada del empleado
+    // SALIDA - Vista de edición con los datos asociados al ID
+    // Función para mostrar la vista de edición de un empleado
     public function EmployeeEdit($id){
-        $data['editData'] = User::find($id);
+        $data['editData'] = User::find($id); // Recuperamos el empleado por ID
         $data['designation'] = Designation::all(); // Recuperamos todas las designaciones
         return view('backend.employee.employee_reg.employee_edit',$data);
     }
 
+    // ENTRADA - Datos del empleado obtenidos de los campos de la vista de edición
+    // SALIDA - Actualización de datos en la BD / Notificación de éxito
+    // Función para editar un empleado
     public function EmployeeUpdate(Request $request, $id){
             // Datos del empleado
             $user = User::find($id); // Encontramos al empleado por ID
@@ -137,6 +143,20 @@ class EmpleadoRegistroControlador extends Controller
             'alert-type' => 'success'
         );
         // Desplegamos la notificación de exito en la view
+        return redirect()->route('employee.registration.view')->with($notification);
+    }
+
+    public function EmployeeDelete(Request $request, $id){
+        $citizen = User::find($id);
+        $assign_citizen = DB::delete(DB::raw("delete from employee_sallary_logs where employee_id='$id'"));
+        $citizen->delete();
+        // Inicia procedimiento para notificación dentro del sistema
+        $notification = array(
+            'message' => 'Empleado eliminado exitosamente',
+            'alert-type' => 'info'
+        );
+
+        // Desplegamos la notificación de exito
         return redirect()->route('employee.registration.view')->with($notification);
     }
 

@@ -24,7 +24,7 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+								<th width="5%">#</th>
 								<th>Nombre</th>
 								<th width="25%">Acción</th>
 							</tr>
@@ -45,7 +45,6 @@
 									<!-- Boton de eliminar usuario por ID -->
                                     <a href="{{route('citizen.class.delete',$citizen->id)}}" class="btn btn-danger" id="delete"> Eliminar </a>
                                     @endif
-
                                     <!-- Encargado -->
                                     @if(Auth::user()->role=='Encargado')
                                     <!-- En el boton editar, llamamos al a función de editar apuntando a un ID especifico-->

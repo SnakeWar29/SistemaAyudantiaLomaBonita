@@ -23,7 +23,7 @@
 					  <table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+								<th width="5%">#</th>
                                 <th> Salario previo </th>
                                 <th> Incremento </th>
                                 <th> Salario actual </th>

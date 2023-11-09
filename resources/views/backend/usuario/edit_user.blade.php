@@ -56,6 +56,9 @@
 					  	 <h5> Correo Electrónico <span class="text-danger">*</span></h5>
 					  	 <div class="controls">
 							   <input type="email" name="email" class="form-control" value="{{$editData->email}}" required=""> </div>
+                               @error('email')
+                               <span class="text-danger"> {{$message="Hubo un error al realizar la operacion, puede deberse a que el correo electrónico ya está registrado"}}</span>
+                               @enderror
 				 	    </div>
 					</div>
 					<!-- Formulario para pedir la contraseña del usuario -->

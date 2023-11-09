@@ -78,13 +78,36 @@
                     <div class="col-xl-6 col-12">
                         <div class="box">
                             <div class="box-body">
-                                <h4 class="box-title"> Importar - Usuarios/Empleados/Ciudadanos </h4>
-                                <h6> IMPORTANTE: Solo importe los datos en caso de pérdida de estos mismos y con los permisos necesarios. </h6>
+                                <h4 class="box-title"> Exportar - Base de datos completa </h4>
+                                <h6> IMPORTANTE: Se generará un archivo .zip con los datos completos en formato .sql </h6>
                                 <div>
-                                    <form action="{{route('database.import.execute')}}" method="post" enctype="multipart/form-data">
+                                    <center>
+                                        <a class="btn btn-app btn-primary" href="{{route('database.complete.export')}}">
+                                            <span class="badge bg-success"> .SQL </span>
+                                            <i class="fa fa-save"></i> Descargar
+                                        </a>
+                                    </center>
+                                    <h6> La descarga de este archivo solamente debe realizarse si se tiene conocimientos en el formato del archivo asignado </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <div class="box">
+                            <div class="box-body">
+                                <h4 class="box-title"> Importar - Base de datos completa </h4>
+                                <h6> IMPORTANTE: Una vez que se realice la importación de los datos, los datos anteriores no se podrán recuperar </h6>
+                                <h6> SUGERENCIA: Respaldar la base de datos actual antes de proceder con la importación </h6>
+                                <div>
+                                    <form action="{{route('database.complete.import')}}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
-                                        <br><br>
+                                        <input type="file" id="archivo_zip" name="archivo_zip" accept=".zip" required="">
+                                        <br> <br>
+                                        <h6> El archivo debe ser un formato .sql comprimido en un archivo .zip </h6>
+                                        <br>
+
                                         <input type="submit" value="Importar">
                                     </form>
                                 </div>

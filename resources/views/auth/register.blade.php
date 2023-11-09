@@ -70,20 +70,11 @@
 										<input type="password" id="password_confirmation" name="password_confirmation" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Confirmar contraseña" required autocomplete="new-password">
 									</div>
 								</div>
-                                <div class="form-group">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text bg-transparent text-white"><i class="ti-lock"></i></span>
-										</div>
-                                        <!-- Contraseña comfirmacion -->
-										<input type="password" id="password_confirmation" name="password_confirmation" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Confirmar contraseña" required autocomplete="new-password">
-									</div>
-								</div>
 								  <div class="row">
 									<div class="col-12">
 									  <div class="checkbox text-white">
 										<input type="checkbox" id="basic_checkbox_1" >
-										<label for="basic_checkbox_1"> Estoy de acuerdo con los <a href="#" class="text-warning"><b>Términos de uso </b></a></label>
+										<!-- <label for="basic_checkbox_1"> Estoy de acuerdo con los <a href="#" class="text-warning"><b>Términos de uso </b></a></label> -->
 									  </div>
 									</div>
 									<div class="col-12 text-center">
@@ -93,7 +84,7 @@
                             </form>
 
 							<div class="text-center">
-								<p class="mt-15 mb-0 text-white">¿Ya estas registrado? <a href="{{ route('login') }}" class="text-danger ml-5"> Iniciar sesión </a></p>
+								<p class="mt-15 mb-0 text-white">¿Ya estás registrado? <a href="{{ route('login') }}" class="text-danger ml-5"> Iniciar sesión </a></p>
 							</div>
 						</div>
 					</div>

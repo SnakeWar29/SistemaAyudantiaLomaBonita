@@ -24,7 +24,7 @@
                         <thead class="thead-light"
 						<thead>
 							<tr>
-								<th width="5%">ID</th>
+								<th width="5%">#</th>
 								<th width="20%"> Apoyo </th>
 								<th width="20%"> Apoyo total </th>
                                 <th width="20%"> Apoyo mensual </th>

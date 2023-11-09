@@ -24,7 +24,7 @@
                             <div class="form-group">
                                <h5> Nombre de la designación <span class="text-danger">*</span></h5>
                                <div class="controls">
-                                   <input type="text" name="name" class="form-control" required=""> </div>
+                                   <input type="text" name="name" minlength="10" class="form-control" required=""> </div>
                                     <!-- Se llama a traer el error que marcara cualqier tipo de error usando message -->
                                     @error('name')
                                         <span class="text-danger"> {{$message="Hubo un error al realizar la operación, puede deberse a que la asignación ya esta registrada"}}</span>

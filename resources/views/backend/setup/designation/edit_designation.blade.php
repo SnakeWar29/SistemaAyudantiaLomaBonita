@@ -23,7 +23,7 @@
                             <div class="form-group">
                                <h5> Nombre de la asignación <span class="text-danger">*</span></h5>
                                <div class="controls">
-                                   <input type="text" name="name" class="form-control" required="" value="{{$editData->name}}"> </div>
+                                   <input type="text" name="name" minlength="10" class="form-control" required="" value="{{$editData->name}}"> </div>
                                     <!-- Se llama a traer el error que marcara cualqier tipo de error usando message -->
                                     @error('name')
                                         <span class="text-danger"> {{$message="Hubo un error al realizar la operación, puede ser porque la deisgnación ya esta registrada"}}</span>

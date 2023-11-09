@@ -168,7 +168,7 @@ footer {
         <div><span>AYUDANTE</span> C. José Pérez López </div>
         <div><span>DIRECCIÓN</span>Prolongación Articulo 127 S/N</div>
         <div><span>CORREO</span> <a href="jose.daemi@hotmail.com">jose.daemi@hotmail.com</a></div>
-        <div><span>TELEFONO</span> 7775102765</div>
+        <div><span>TELÉFONO</span> 7775102765</div>
         <div><span>GENERACIÓN </span>  {{ date("d/M/Y") }} </div>
         <div><span>TIPO </span> <strong> <u>Reporte de empleado</u> </strong>  </div>
       </div>
@@ -195,7 +195,7 @@ footer {
           </tr>
           <tr>
             <td class="service"><center> <strong> 3 </strong></center></td>
-            <td class="desc"> <center> <strong> Telefono </strong> </center> </td>
+            <td class="desc"> <center> <strong> Teléfono </strong> </center> </td>
             <td class="desc"> <center> {{ $details->mobile}} </center></td>
           </tr>
           <tr>
